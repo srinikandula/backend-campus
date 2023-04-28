@@ -39,7 +39,7 @@ public class AssignmentManager {
         // Update the fields of the existing entity with the fields of the updated DTO
         existingEntity.setAssignmentName(updatedMilestone.getAssignmentName());
 //        existingEntity.setTypeofAssignment(updatedMilestone.getTypeofAssignment());
-        existingEntity.setFinancialYear(updatedMilestone.getFinancialYear());
+        existingEntity.setTypeofAssignment(updatedMilestone.getTypeofAssignment());
         existingEntity.setEngagementPartner(updatedMilestone.getEngagementPartner());
         existingEntity.setUsers(updatedMilestone.getUsers());
         existingEntity.setValue(updatedMilestone.getValue());

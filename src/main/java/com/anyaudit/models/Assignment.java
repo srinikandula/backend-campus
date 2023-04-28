@@ -40,15 +40,22 @@ public class Assignment extends BaseModel {
 //    private String typeofAssignment;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "framework_id", referencedColumnName = "id")
+    @JoinColumn(name = "typeofAssignment_id", referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Framework framework;
+    private TypeofAssignment typeofAssignment;
 
 
-    @NotBlank
-    @Size(max = 8)
-    @Column(name = "financial_year")
-    private String financialYear;
+//    @NotBlank
+//    @Size(max = 8)
+//    @Column(name = "financial_year")
+//    private String financialYear;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "year_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Year year;
+
+
 
     @NotBlank
     @Size(max = 30)
