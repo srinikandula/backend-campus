@@ -12,11 +12,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "users", 
-    uniqueConstraints = { 
-      @UniqueConstraint(columnNames = "username"),
-      @UniqueConstraint(columnNames = "email") 
-    })
+@Table(name = "users",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "username"),
+                @UniqueConstraint(columnNames = "email"),
+                @UniqueConstraint(columnNames = "phoneNo")
+        })
 @Getter
 @Setter
 public class User {
@@ -34,23 +35,27 @@ public class User {
   private String email;
 
   @NotBlank
+  @Size(max = 15)
+  private String phoneNo;
+
+  @NotBlank
   @Size(max = 120)
   private String password;
 
   @ManyToMany(fetch = FetchType.LAZY)
-  @JoinTable(  name = "user_roles", 
-        joinColumns = @JoinColumn(name = "user_id"), 
-        inverseJoinColumns = @JoinColumn(name = "role_id"))
+  @JoinTable(  name = "user_roles",
+          joinColumns = @JoinColumn(name = "user_id"),
+          inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles = new HashSet<>();
 
   public User() {
   }
 
-  public User(String username, String email, String password) {
+  public User(String username, String email, String password, String phoneNo, Set<Role> roles) {
     this.username = username;
     this.email = email;
     this.password = password;
+    this.phoneNo = phoneNo;
+    this.roles = roles;
   }
-
-
 }
