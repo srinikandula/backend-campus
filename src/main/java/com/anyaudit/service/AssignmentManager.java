@@ -38,7 +38,7 @@ public class AssignmentManager {
                 .orElseThrow(() -> new UserNotFoundException(id));
         // Update the fields of the existing entity with the fields of the updated DTO
         existingEntity.setAssignmentName(updatedMilestone.getAssignmentName());
-        existingEntity.setTypeofAssignment(updatedMilestone.getTypeofAssignment());
+//        existingEntity.setTypeofAssignment(updatedMilestone.getTypeofAssignment());
         existingEntity.setFinancialYear(updatedMilestone.getFinancialYear());
         existingEntity.setEngagementPartner(updatedMilestone.getEngagementPartner());
         existingEntity.setUsers(updatedMilestone.getUsers());

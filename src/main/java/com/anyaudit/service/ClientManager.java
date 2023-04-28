@@ -57,6 +57,8 @@ public class    ClientManager {
             assignment.setUpdatedBy(c.getUpdatedBy());
             assignment.setCreatedDate(c.getCreatedDate());
             assignment.setUpdatedDate(c.getUpdatedDate());
+            assignment.setFramework(c.getFramework());
+
             result.add(assignment);
         }
         return result;

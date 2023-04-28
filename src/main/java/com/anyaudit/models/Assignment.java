@@ -34,10 +34,15 @@ public class Assignment extends BaseModel {
     @Column(name = "assignment_name")
     private String assignmentName;
 
-    @NotBlank
-    @Size(max = 50)
-    @Column(name = "type_of_assignment")
-    private String typeofAssignment;
+//    @NotBlank
+//    @Size(max = 50)
+//    @Column(name = "type_of_assignment")
+//    private String typeofAssignment;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "framework_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Framework framework;
 
 
     @NotBlank
