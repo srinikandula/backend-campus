@@ -106,7 +106,7 @@ public class AuthController {
                   return roleRepository.findByName(ERole.ROLE_MODERATOR)
                           .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                 case "engagement_partner":
-                  return roleRepository.findByName(ERole.ROLE_ENGAHEMENTPARTNAR)
+                  return roleRepository.findByName(ERole.ROLE_EP)
                           .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                 default:
                   return roleRepository.findByName(ERole.ROLE_USER)
