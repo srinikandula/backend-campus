@@ -43,23 +43,23 @@ public class PlanController {
     }
 
     @PutMapping("/{id}")
-//    public ResponseEntity<Plan> updatePlan(@PathVariable("id") Long id, @RequestBody Plan plan) {
-//        Optional<Plan> existingPlan = planManager.getPlanById(id);
-//        if (existingPlan.isPresent()) {
-//            Plan updatedPlan = existingPlan.get();
-//            updatedPlan.setClient(plan.getClient());
-//            updatedPlan.setAssignment(plan.getAssignment());
-//            updatedPlan.setMilestone(plan.getMilestone());
-//            updatedPlan.setDate(plan.getDate());
-//            updatedPlan.setUsers(plan.getUsers());
-//            updatedPlan.setPlanHour(plan.getPlanHour());
-//            updatedPlan.setPlanDesc(plan.getPlanDesc());
-//            planManager.savePlan(updatedPlan);
-//            return ResponseEntity.ok(updatedPlan);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    public ResponseEntity<Plan> updatePlan(@PathVariable("id") Long id, @RequestBody Plan plan) {
+        Optional<Plan> existingPlan = planManager.getPlanById(id);
+        if (existingPlan.isPresent()) {
+            Plan updatedPlan = existingPlan.get();
+            updatedPlan.setClient(plan.getClient());
+            updatedPlan.setAssignment(plan.getAssignment());
+            updatedPlan.setMilestone(plan.getMilestone());
+            updatedPlan.setDate(plan.getDate());
+            updatedPlan.setUser(plan.getUser());
+            updatedPlan.setPlanHour(plan.getPlanHour());
+            updatedPlan.setPlanDesc(plan.getPlanDesc());
+            planManager.savePlan(updatedPlan);
+            return ResponseEntity.ok(updatedPlan);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePlan(@PathVariable("id") Long id) {

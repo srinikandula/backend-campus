@@ -5,6 +5,7 @@ import com.anyaudit.dto.AssignmentNameIDDTO;
 import com.anyaudit.exception.UserNotFoundException;
 import com.anyaudit.models.Assignment;
 import com.anyaudit.models.Milestone;
+import com.anyaudit.repository.AssignmentRepository;
 import com.anyaudit.service.AssignmentManager;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +26,8 @@ public class AssignmentController {
 
     @Autowired
     private AssignmentManager assignmentManager;
+    @Autowired
+    private AssignmentRepository assignmentRepository;
 
     public AssignmentController(AssignmentManager assignmentService) {
         this.assignmentManager = assignmentService;
@@ -105,5 +108,14 @@ public List<Map<String, Object>> getClientAssignment(@PathVariable("id") Long id
     }
     return resultList;
 }
+
+    @GetMapping("/count/{userId}")
+    public ResponseEntity<Map<String, Integer>> countDistinctAssignmentsByUser(@PathVariable int userId) {
+        int count = assignmentRepository.countDistinctAssignmentsByUser(userId);
+        Map<String, Integer> response = new HashMap<>();
+        response.put("count", count);
+        return ResponseEntity.ok(response);
+    }
+
 }
 

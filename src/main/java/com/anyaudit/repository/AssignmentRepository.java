@@ -15,5 +15,8 @@ public interface AssignmentRepository extends JpaRepository<Assignment, Long> {
         @Query(value = "SELECT assignment_id, assignment_name FROM assignment WHERE client_id = :clientId", nativeQuery = true)
         List<Object[]> findAssignmentsByClientId(@Param("clientId") Long clientId);
 
+        @Query(value ="SELECT COUNT(DISTINCT a.assignment_id) FROM assignment a INNER JOIN user_client uc ON a.assignment_id = uc.assignment_id WHERE uc.user_id = :userId", nativeQuery = true)
+        int countDistinctAssignmentsByUser(@Param("userId") int userId);
+
 
 }
