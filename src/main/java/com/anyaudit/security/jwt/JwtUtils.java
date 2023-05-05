@@ -1,5 +1,7 @@
 package com.anyaudit.security.jwt;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import com.anyaudit.security.services.UserDetailsImpl;
@@ -19,49 +21,34 @@ public class JwtUtils {
   private String jwtSecret;
 
   @Value("${bezkoder.app.jwtExpirationMs}")
-  private long jwtExpirationMs = 86400000; // one day in milliseconds
-
-
-  @Value("${bezkoder.app.jwt.refreshExpirationDateInMs}")
-  private long refreshExpirationDateInMs = 9000000;
+  private int jwtExpirationMs;
 
   public String generateJwtToken(Authentication authentication) {
 
     UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-    Date expirationTime = new Date(System.currentTimeMillis() + jwtExpirationMs);
+
+
+
+
 
     return Jwts.builder()
-            .setSubject(userPrincipal.getUsername())
-            .setIssuedAt(new Date())
-            .setExpiration(expirationTime)
+            .setSubject((userPrincipal.getUsername()))
+            .setIssuer("javainfinite")
+            //.setIssuedAt(new Date())
+            .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
             .signWith(SignatureAlgorithm.HS512, jwtSecret)
             .compact();
   }
-
 
   public String getUserNameFromJwtToken(String token) {
     return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
   }
 
-
   public boolean validateJwtToken(String authToken) {
     try {
-      Claims claims = Jwts.parser()
-              .setSigningKey(jwtSecret)
-              .setAllowedClockSkewSeconds(1389611144)
-              .parseClaimsJws(authToken)
-              .getBody();
-
-      Date expiration = claims.getExpiration();
-      Date now = new Date();
-
-      if (now.before(expiration)) {
-        return true;
-      }
-//      else {
-////        logger.error("JWT token is expired: {}", expiration);
-//      }
+      Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+      return true;
     } catch (SignatureException e) {
       logger.error("Invalid JWT signature: {}", e.getMessage());
     } catch (MalformedJwtException e) {
@@ -76,8 +63,4 @@ public class JwtUtils {
 
     return false;
   }
-
 }
-
-
-

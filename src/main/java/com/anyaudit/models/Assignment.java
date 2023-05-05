@@ -34,21 +34,12 @@ public class Assignment extends BaseModel {
     @Column(name = "assignment_name")
     private String assignmentName;
 
-//    @NotBlank
-//    @Size(max = 50)
-//    @Column(name = "type_of_assignment")
-//    private String typeofAssignment;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "typeofAssignment_id", referencedColumnName = "id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TypeofAssignment typeofAssignment;
 
-
-//    @NotBlank
-//    @Size(max = 8)
-//    @Column(name = "financial_year")
-//    private String financialYear;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "year_id", referencedColumnName = "id")
@@ -57,20 +48,27 @@ public class Assignment extends BaseModel {
 
 
 
-    @NotBlank
-    @Size(max = 30)
-    @Column(name = "engagement_partner")
-    private String engagementPartner;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userEP_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private User engagementPartner;
 
-    @NotBlank
-    @Size(max = 20)
-    @Column(name = "review_partner")
-    private String reviewPartner;
 
-    @NotBlank
-    @Size(max = 20)
-    @Column(name = "users")
-    private String users;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userRP_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private User reviewPartner;
+
+
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(  name = "user_client",
+            joinColumns = @JoinColumn(name = "assignment_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Set<User> users = new HashSet<>();
+
 
     @NotBlank
     @Size(max = 20)
@@ -82,7 +80,6 @@ public class Assignment extends BaseModel {
     @Column(name = "startdate")
     private Date startDate;
 
-//    @NotBlank
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "UTC")
     @Column(name = "enddate")
     private Date endDate;
@@ -91,5 +88,6 @@ public class Assignment extends BaseModel {
     @JoinColumn(name = "client_id", referencedColumnName = "client_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Client client;
+//    @NotBlank
 
 }

@@ -1,5 +1,6 @@
 package com.anyaudit.service;
 
+import com.anyaudit.exception.ClientNotFoundException;
 import com.anyaudit.exception.UserNotFoundException;
 import com.anyaudit.models.Assignment;
 import com.anyaudit.models.Milestone;
@@ -22,33 +23,36 @@ public class MilestoneManager {
         return milestones;
     }
 
-    public Optional<Milestone> getMilestoneById(Long id) {
-        return milestoneRepository.findById(id);
+    public Milestone getMilestoneById(Long id) {
+        Optional<Milestone> milestone = milestoneRepository.findById(id);
+        if (milestone.isPresent()) {
+            return milestone.get();
+        } else {
+            throw new ClientNotFoundException(id);
+        }
     }
 
-    public Milestone saveMilestone(Milestone milestone) {
+    public Milestone createMilestone(Milestone milestone) {
         return milestoneRepository.save(milestone);
     }
 
-    public Milestone updateMilestone(Long id, Milestone updatedMilestone) {
-        // Retrieve the existing assignment entity from the repository
-        com.anyaudit.models.Milestone existingEntity = milestoneRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(id));
-        // Update the fields of the existing entity with the fields of the updated DTO
-        existingEntity.setMilestoneName(updatedMilestone.getMilestoneName());
-        existingEntity.setCheckerUser(updatedMilestone.getCheckerUser());
-        existingEntity.setTeam(updatedMilestone.getTeam());
-        existingEntity.setStartDate(updatedMilestone.getStartDate());
-        existingEntity.setEndDate(updatedMilestone.getEndDate());
+    public Milestone updateMilestone(Long id, Milestone milestoneDetails) {
+        Milestone milestone = getMilestoneById(id);
 
-        // Save the updated entity back to the repository
-        com.anyaudit.models.Milestone savedEntity = milestoneRepository.save(existingEntity);
-        return savedEntity;
+        milestone.setMilestoneName(milestoneDetails.getMilestoneName());
+        milestone.setCheckerUser(milestoneDetails.getCheckerUser());
+        milestone.setTeam(milestoneDetails.getTeam());
+        milestone.setStartDate(milestoneDetails.getStartDate());
+        milestone.setEndDate(milestoneDetails.getEndDate());
+        milestone.setClient(milestoneDetails.getClient());
+        milestone.setAssignment(milestoneDetails.getAssignment());
+
+        return milestoneRepository.save(milestone);
     }
 
     public void deleteMilestone(Long id) {
-        milestoneRepository.deleteById(id);
-
+        Milestone milestone = getMilestoneById(id);
+        milestoneRepository.delete(milestone);
     }
 
     public List<Object[]> findMilestoneById(Long clientId) {

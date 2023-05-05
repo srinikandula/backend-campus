@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,40 +25,53 @@ public class PlanController {
     @Autowired
     private PlanManager planManager;
     @GetMapping("/list")
-    public List<Plan> getAllPlan() {
-        return planManager.getAllPlan();
+    public ResponseEntity<List<Plan>> getAllPlans() {
+        List<Plan> plans = planManager.getAllPlans();
+        return ResponseEntity.ok(plans);
     }
 
     @GetMapping("/{id}")
-    public Optional<Plan> getMilestoneById(@PathVariable Long id) {
-        return planManager.getPlanById(id);
+    public ResponseEntity<Plan> getPlanById(@PathVariable("id") Long id) {
+        Optional<Plan> plan = planManager.getPlanById(id);
+        return plan.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/save")
-    public ResponseEntity<?> savePlan(@RequestBody Plan plan) {
-        try {
-            Plan save = planManager.savePlan(plan);
-            return ResponseEntity.ok(save);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An error occurred while saving the assignment: " + e.getMessage());
-        }
+    public ResponseEntity<Plan> createPlan(@RequestBody Plan plan) {
+        Plan savedPlan = planManager.savePlan(plan);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedPlan);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateMilestone(@PathVariable Long id, @RequestBody Plan updated) {
-        try {
-            Plan saved = planManager.updatePlan(id, updated);
-            return ResponseEntity.ok(saved);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An error occurred while updating the assignment: " + e.getMessage());
+//    public ResponseEntity<Plan> updatePlan(@PathVariable("id") Long id, @RequestBody Plan plan) {
+//        Optional<Plan> existingPlan = planManager.getPlanById(id);
+//        if (existingPlan.isPresent()) {
+//            Plan updatedPlan = existingPlan.get();
+//            updatedPlan.setClient(plan.getClient());
+//            updatedPlan.setAssignment(plan.getAssignment());
+//            updatedPlan.setMilestone(plan.getMilestone());
+//            updatedPlan.setDate(plan.getDate());
+//            updatedPlan.setUsers(plan.getUsers());
+//            updatedPlan.setPlanHour(plan.getPlanHour());
+//            updatedPlan.setPlanDesc(plan.getPlanDesc());
+//            planManager.savePlan(updatedPlan);
+//            return ResponseEntity.ok(updatedPlan);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePlan(@PathVariable("id") Long id) {
+        Optional<Plan> existingPlan = planManager.getPlanById(id);
+        if (existingPlan.isPresent()) {
+            planManager.deletePlanById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteMilestone(@PathVariable Long id) {
-        planManager.deleteMilestone(id);
-        return ResponseEntity.ok().body("Client with ID " + id + " successfully deleted.");
-    }
 }
+
+
+

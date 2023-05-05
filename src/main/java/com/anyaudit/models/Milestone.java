@@ -12,6 +12,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "milestone")
@@ -30,15 +32,28 @@ public class Milestone extends BaseModel {
     @Column(name = "milestone_name")
     private String milestoneName;
 
-    @NotBlank
-    @Size(max = 30)
-    @Column(name = "checker_user")
-    private String checkerUser;
+//    @NotBlank
+//    @Size(max = 30)
+//    @Column(name = "checker_user")
+//    private String checkerUser;
 
-    @NotBlank
-    @Size(max = 30)
-    @Column(name = "team")
-    private String team;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userCU_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private User checkerUser;
+
+
+//    @NotBlank
+//    @Size(max = 30)
+//    @Column(name = "team")
+//    private String team;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(  name = "user_team",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "team_id"))
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Set<User> team = new HashSet<>();
 
 //    @NotBlank
 

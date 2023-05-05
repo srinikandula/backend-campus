@@ -36,39 +36,53 @@ public class AssignmentController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Assignment> getAssignmentById(@PathVariable Long id) {
+    public Assignment getAssignmentById(@PathVariable Long id) {
         return assignmentManager.getAssignmentById(id);
     }
 
+
     @PostMapping("/save")
-    public ResponseEntity<?> saveAssignment(@RequestBody Assignment assignment) {
-        try {
-            Assignment savedAssignment = assignmentManager.saveAssignment(assignment);
-            return ResponseEntity.ok(savedAssignment);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An error occurred while saving the assignment: " + e.getMessage());
-        }
+    public Assignment saveAssignment(@RequestBody Assignment assignment) {
+        return assignmentManager.saveAssignment(assignment);
     }
 
+
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateAssignment(@PathVariable Long id, @RequestBody Assignment updated) {
-        try {
-            Assignment savedMilestone = assignmentManager.updateAssignment(id, updated);
-            return ResponseEntity.ok(savedMilestone);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An error occurred while updating the assignment: " + e.getMessage());
+    public Assignment updateAssignment(@PathVariable Long id, @RequestBody Assignment assignment) {
+        Assignment existingAssignment = assignmentManager.getAssignmentById(id);
+
+        if (existingAssignment != null) {
+            existingAssignment.setAssignmentName(assignment.getAssignmentName());
+            existingAssignment.setTypeofAssignment(assignment.getTypeofAssignment());
+            existingAssignment.setYear(assignment.getYear());
+            existingAssignment.setEngagementPartner(assignment.getEngagementPartner());
+            existingAssignment.setReviewPartner(assignment.getReviewPartner());
+            existingAssignment.setUsers(assignment.getUsers());
+            existingAssignment.setValue(assignment.getValue());
+            existingAssignment.setStartDate(assignment.getStartDate());
+            existingAssignment.setEndDate(assignment.getEndDate());
+            existingAssignment.setClient(assignment.getClient());
+
+            return assignmentManager.saveAssignment(existingAssignment);
         }
+
+        return null;
     }
 
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAssignment(@PathVariable Long id) {
-        assignmentManager.deleteAssignment(id);
-        return ResponseEntity.ok().body("Client with ID " + id + " successfully deleted.");
+    public ResponseEntity<Void> deleteAssignment(@PathVariable Long id) {
+        Assignment existingAssignment = assignmentManager.getAssignmentById(id);
+
+        if (existingAssignment != null) {
+            assignmentManager.deleteAssignment(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+
+        return ResponseEntity.notFound().build();
     }
+
 
 //    @GetMapping("/findByClientId/{id}")
 //    public List<AssignmentNameIDDTO> getClientAssignmentNames(@PathVariable("id") Long id) {

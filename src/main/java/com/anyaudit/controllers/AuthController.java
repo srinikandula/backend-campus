@@ -1,8 +1,6 @@
 package com.anyaudit.controllers;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -15,6 +13,7 @@ import com.anyaudit.repository.RoleRepository;
 import com.anyaudit.repository.UserRepository;
 import com.anyaudit.security.jwt.JwtUtils;
 import com.anyaudit.security.services.UserDetailsImpl;
+import com.anyaudit.service.AuthManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -43,6 +42,8 @@ public class AuthController {
   @Autowired
   RoleRepository roleRepository;
 
+  @Autowired
+  AuthManager authManager;
   @Autowired
   PasswordEncoder encoder;
 
@@ -118,13 +119,28 @@ public class AuthController {
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
+
   @GetMapping("/list")
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
+//  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public ResponseEntity<List<User>> getUsers() {
     List<User> users = userRepository.findAll();
     return ResponseEntity.ok(users);
   }
 
+
+  @GetMapping("/names")
+  public List<Map<String, Object>> findNameAndId() {
+    List<Object[]> users = authManager.findNameAndId();
+    List<Map<String, Object>> resultList = new ArrayList<>();
+    for (Object[] user : users) {
+      Map<String, Object> clientMap = new HashMap<>();
+      clientMap.put("user_id", user[0]);
+      clientMap.put("name", user[1]);
+      resultList.add(clientMap);
+    }
+    return resultList;
+
+  }
 
 }
 

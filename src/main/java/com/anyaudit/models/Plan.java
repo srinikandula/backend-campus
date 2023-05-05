@@ -57,6 +57,9 @@ public class Plan extends BaseModel{
     @Column(name = "plan_desc")
     private String planDesc;
 
+
+
+
 //    @ManyToMany(fetch = FetchType.LAZY)
 //    @JoinTable(  name = "plan_users",
 //            joinColumns = @JoinColumn(name = "plan_id"),

@@ -29,19 +29,14 @@ public class MilestoneController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Milestone> getMilestoneById(@PathVariable Long id) {
-        return milestoneManager.getMilestoneById(id);
+    public ResponseEntity<Milestone> getMilestoneById(@PathVariable(value = "id") Long id) {
+        Milestone milestone = milestoneManager.getMilestoneById(id);
+        return ResponseEntity.ok(milestone);
     }
-
     @PostMapping("/save")
-    public ResponseEntity<?> saveMilestone(@RequestBody Milestone milestone) {
-        try {
-            Milestone save = milestoneManager.saveMilestone(milestone);
-            return ResponseEntity.ok(save);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An error occurred while saving the assignment: " + e.getMessage());
-        }
+    public ResponseEntity<Milestone> createMilestone(@Valid @RequestBody Milestone milestone) {
+        Milestone createdMilestone = milestoneManager.createMilestone(milestone);
+        return new ResponseEntity<>(createdMilestone, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
