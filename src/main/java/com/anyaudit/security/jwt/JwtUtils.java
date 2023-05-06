@@ -20,13 +20,11 @@ public class JwtUtils {
     private final Key jwtSecret = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
     public String generateJwtToken(Authentication authentication) {
-
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
-
         return Jwts.builder()
-                .setSubject((userPrincipal.getUsername()))
+                .setSubject(userPrincipal.getUsername())
                 .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpiration * 1000))
+                .setExpiration(new Date(new Date().getTime() + jwtExpiration * 1000))
                 .signWith(jwtSecret)
                 .compact();
     }
@@ -36,9 +34,8 @@ public class JwtUtils {
             Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(authToken);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            return false;
         }
-        return false;
     }
 
     public String getUsernameFromJwtToken(String token) {
