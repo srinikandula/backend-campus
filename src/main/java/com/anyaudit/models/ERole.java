@@ -1,8 +1,10 @@
 package com.anyaudit.models;
 
 public enum ERole {
-  ROLE_USER,
-  ROLE_MODERATOR,
+
   ROLE_ADMIN,
-  ROLE_EP
+  ROLE_MANAGER,
+  ROLE_INCHARGE,
+  ROLE_SENIOR,
+  ROLE_JUNIOR
 }

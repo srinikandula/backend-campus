@@ -94,24 +94,30 @@ public class AuthController {
     }
 
     // Create new user's account
-    User user = new User(signUpRequest.getUsername(),
+    User user = new User(
+            signUpRequest.getUsername(),
             signUpRequest.getEmail(),
             encoder.encode(signUpRequest.getPassword()),
             signUpRequest.getPhoneNo(),
             signUpRequest.getRole().stream().map(role -> {
               switch (role) {
-                case "admin":
+                case "Admin":
                   return roleRepository.findByName(ERole.ROLE_ADMIN)
                           .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                case "moderator":
-                  return roleRepository.findByName(ERole.ROLE_MODERATOR)
+                case "Audit Manager":
+                  return roleRepository.findByName(ERole.ROLE_MANAGER)
                           .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                case "engagement_partner":
-                  return roleRepository.findByName(ERole.ROLE_EP)
+                case "Audit Incharge":
+                  return roleRepository.findByName(ERole.ROLE_INCHARGE)
+                          .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                case "Senior":
+                  return roleRepository.findByName(ERole.ROLE_SENIOR)
+                          .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                case "Junior":
+                  return roleRepository.findByName(ERole.ROLE_JUNIOR)
                           .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                 default:
-                  return roleRepository.findByName(ERole.ROLE_USER)
-                          .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                  throw new IllegalArgumentException("Invalid role: " + role);
               }
             }).collect(Collectors.toSet()));
 
@@ -120,7 +126,7 @@ public class AuthController {
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
 
-  @GetMapping("/list")
+    @GetMapping("/list")
 //  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public ResponseEntity<List<User>> getUsers() {
     List<User> users = userRepository.findAll();
