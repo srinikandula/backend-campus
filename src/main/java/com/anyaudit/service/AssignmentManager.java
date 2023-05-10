@@ -36,7 +36,7 @@ public class AssignmentManager {
         assignmentRepository.deleteById(id);
     }
 
-    public List<Object[]> findAssignmentsByClientId(Long clientId) {
-        return assignmentRepository.findAssignmentsByClientId(clientId);
+    public List<Object[]> findAssignmentsByClientId(Long userId) {
+        return assignmentRepository.findAssignmentsByClientId(userId);
     }
 }

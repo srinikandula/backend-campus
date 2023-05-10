@@ -96,14 +96,14 @@ public class AssignmentController {
 //        }
 //        return resultList;
 //    }
-@GetMapping("/findByClientId/{id}")
+@GetMapping("/findByuserId/{id}")
 public List<Map<String, Object>> getClientAssignment(@PathVariable("id") Long id) {
     List<Object[]> assignments = assignmentManager.findAssignmentsByClientId(id);
     List<Map<String, Object>> resultList = new ArrayList<>();
     for (Object[] assignment : assignments) {
         Map<String, Object> clientMap = new HashMap<>();
-        clientMap.put("assignment_id", assignment[0]);
-        clientMap.put("assignment_name", assignment[1]);
+        clientMap.put("client_count", assignment[0]);
+        clientMap.put("assignment_count", assignment[1]);
         resultList.add(clientMap);
     }
     return resultList;
