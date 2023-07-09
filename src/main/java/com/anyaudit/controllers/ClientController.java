@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
@@ -25,11 +26,13 @@ public class ClientController {
     private ClientManager clientService;
 
     @GetMapping("/list")
+    @PreAuthorize("hasRole('JUNIOR')")
     public List<Client> getAllClients() {
         return clientService.getAllClients();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('JUNIOR')")
     public ResponseEntity<Client> getClientById(@PathVariable("id") long clientId) {
         Client client = clientService.getClientById(clientId);
         if (client == null) {

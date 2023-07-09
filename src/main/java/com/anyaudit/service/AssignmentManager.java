@@ -39,4 +39,8 @@ public class AssignmentManager {
     public List<Object[]> findAssignmentsByClientId(Long userId) {
         return assignmentRepository.findAssignmentsByClientId(userId);
     }
+
+    public List<Object[]> findAssignmentNameAndId() {
+        return assignmentRepository.findAssignmentNameAndId();
+    }
 }
