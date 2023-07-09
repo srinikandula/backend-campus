@@ -117,5 +117,19 @@ public List<Map<String, Object>> getClientAssignment(@PathVariable("id") Long id
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/names")
+    public List<Map<String, Object>> findNameAndId() {
+        List<Object[]> clients = assignmentManager.findAssignmentNameAndId();
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        for (Object[] client : clients) {
+            Map<String, Object> clientMap = new HashMap<>();
+            clientMap.put("assi_id", client[0]);
+            clientMap.put("name", client[1]);
+            resultList.add(clientMap);
+        }
+        return resultList;
+
+    }
+
 }
 

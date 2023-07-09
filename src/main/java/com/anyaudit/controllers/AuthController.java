@@ -16,7 +16,6 @@ import com.anyaudit.security.services.UserDetailsImpl;
 import com.anyaudit.service.AuthManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -26,7 +25,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import com.anyaudit.models.ERole;
-import com.anyaudit.models.Role;
 import com.anyaudit.models.User;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -114,7 +112,7 @@ public class AuthController {
                   return roleRepository.findByName(ERole.ROLE_SENIOR)
                           .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                 case "Junior":
-                  return roleRepository.findByName(ERole.ROLE_JUNIOR)
+                    return roleRepository.findByName(ERole.ROLE_JUNIOR)
                           .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                 default:
                   throw new IllegalArgumentException("Invalid role: " + role);
