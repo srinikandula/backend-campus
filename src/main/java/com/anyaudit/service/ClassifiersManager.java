@@ -24,7 +24,7 @@ public class ClassifiersManager {
             assignment.setId(c.getId());
             assignment.setClassifierName(c.getClassifierName());
             assignment.setGroup(c.getGroup());
-            assignment.setDiscription(c.getDiscription());
+            assignment.setDescription(c.getDescription());
             assignment.setCreatedBy(c.getCreatedBy());
             assignment.setUpdatedBy(c.getUpdatedBy());
             assignment.setCreatedDate(c.getCreatedDate());
