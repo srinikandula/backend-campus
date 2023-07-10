@@ -22,7 +22,7 @@ public class TemplateforRisksManager {
             TemplateforRisks assignment = new TemplateforRisks();
             assignment.setId(c.getId());
             assignment.setName(c.getName());
-            assignment.setDiscription(c.getDiscription());
+            assignment.setDescription(c.getDescription());
             assignment.setType(c.getType());
             assignment.setCreatedBy(c.getCreatedBy());
             assignment.setUpdatedBy(c.getUpdatedBy());

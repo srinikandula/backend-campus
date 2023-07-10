@@ -30,8 +30,8 @@ public class Decisions extends BaseModel{
 
     @NotBlank
     @Size(max = 50)
-    @Column(name = "discription")
-    private String discription;
+    @Column(name = "description")
+    private String description;
 
     @NotBlank
     @Size(max = 50)

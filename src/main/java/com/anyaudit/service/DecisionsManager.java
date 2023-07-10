@@ -21,7 +21,7 @@ public class DecisionsManager {
             Decisions assignment = new Decisions();
             assignment.setId(c.getId());
             assignment.setName(c.getName());
-            assignment.setDiscription(c.getDiscription());
+            assignment.setDescription(c.getDescription());
             assignment.setType(c.getType());
             assignment.setChapter(c.getChapter());
             assignment.setCreatedBy(c.getCreatedBy());
