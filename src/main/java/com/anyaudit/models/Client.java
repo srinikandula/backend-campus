@@ -29,7 +29,7 @@ public class Client extends BaseModel {
 
   @NotBlank
   @Size(max = 50)
-  @Column(name = "phone_no")
+  @Column(name = "phoneNo")
   private String phoneNo;
 
   @NotBlank
@@ -39,7 +39,7 @@ public class Client extends BaseModel {
 
   @NotBlank
   @Size(max = 50)
-  @Column(name = "file_no")
+  @Column(name = "fileNo")
   private String fileNo;
 
 //  @NotBlank

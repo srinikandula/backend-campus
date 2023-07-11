@@ -1,6 +1,5 @@
 package com.anyaudit.controllers;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 import com.anyaudit.models.Client;
 import com.anyaudit.service.ClientManager;
@@ -81,6 +80,58 @@ public class ClientController {
         }
         return resultList;
 
+    }
+
+
+//    @GetMapping("/name/{name}")
+//    public List<Client> findByName(@PathVariable String name) {
+//        return clientService.findByName(name);
+//    }
+//    @GetMapping("/phone/{phoneNo}")
+//    public List<Client> getClientsByPhoneNo(@PathVariable String phoneNo) {
+//        return clientService.getClientsByPhoneNo(phoneNo);
+//    }
+//
+//    @GetMapping("/email/{email}")
+//    public List<Client> getClientsByEmail(@PathVariable String email) {
+//        return clientService.getClientsByEmail(email);
+//    }
+//
+//    @GetMapping("/file/{fileNo}")
+//    public List<Client> getClientsByFileNo(@PathVariable String fileNo) {
+//        return clientService.getClientsByFileNo(fileNo);
+//    }
+
+
+    @GetMapping("/find")
+    public List<Client> getClientsByFilter(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String phoneNo,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String fileNo,
+            @RequestParam(required = false) Long frameworkId // Add this parameter
+    ) {
+        if (name != null) {
+            return clientService.findByName(name);
+        } else if (phoneNo != null) {
+            return clientService.getClientsByPhoneNo(phoneNo);
+        } else if (email != null) {
+            return clientService.getClientsByEmail(email);
+        } else if (fileNo != null) {
+            return clientService.getClientsByFileNo(fileNo);
+        } else if (frameworkId != null) { // Add this condition
+            return clientService.findByFrameworkId(frameworkId);
+        } else {
+            // Handle case when no filter is provided
+            return new ArrayList<>();
+        }
+    }
+
+
+
+    @GetMapping("/search/{keyword}")
+    public List<Client> searchClientsByKeyword(@PathVariable String keyword) {
+        return clientService.searchClientsByKeyword(keyword);
     }
 
 

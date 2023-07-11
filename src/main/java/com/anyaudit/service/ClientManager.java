@@ -102,7 +102,32 @@ public class    ClientManager {
     }
 
 
+    public List<Client> findByName(String name) {
+        return clientRepository.findByName(name);
+    }
+
     public List<Object[]> findNameAndId() {
         return clientRepository.findNameAndId();
+    }
+
+
+    public List<Client> getClientsByPhoneNo(String phoneNo) {
+        return clientRepository.findByPhoneNo(phoneNo);
+    }
+
+    public List<Client> getClientsByEmail(String email) {
+        return clientRepository.findByEmail(email);
+    }
+
+    public List<Client> getClientsByFileNo(String fileNo) {
+        return clientRepository.findByFileNo(fileNo);
+    }
+
+    public List<Client> searchClientsByKeyword(String keyword) {
+        return clientRepository.findByAllColumnsContaining(keyword);
+    }
+
+    public List<Client> findByFrameworkId(Long frameworkId) {
+        return clientRepository.findByFrameworkId(frameworkId);
     }
 }

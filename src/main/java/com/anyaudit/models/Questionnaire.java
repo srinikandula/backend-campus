@@ -3,40 +3,36 @@ package com.anyaudit.models;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "templateforControls")
+@Table(name = "questionnaire")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
-public class TemplateforControls extends BaseModel {
+public class Questionnaire extends BaseModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @NotBlank
-    @Column(name = "shortAnswer")
-    private String shortAnswer;
+    @Size(max = 50)
+    @Column(name = "name")
+    private String name;
 
     @NotBlank
-    @Size(max = 15)
-    @Column(name = "type")
-    private String type;
+    @Size(max = 20)
+    @Column(name = "desiredResult")
+    private String desiredResult;
 
     @NotBlank
     @Size(max = 50)
-    @Column(name = "frequency")
-    private String frequency ;
+    @Column(name = "notApplicableAs")
+    private String notApplicableAs;
 
-    @NotBlank
-    @Size(max = 50)
-    @Column(name = "automation")
-    private String automation;
 }

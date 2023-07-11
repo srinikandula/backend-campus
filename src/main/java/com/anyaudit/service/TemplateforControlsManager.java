@@ -24,6 +24,7 @@ public class TemplateforControlsManager {
             assignment.setAutomation(c.getAutomation());
             assignment.setFrequency(c.getFrequency());
             assignment.setShortAnswer(c.getShortAnswer());
+            assignment.setType(c.getType());
             assignment.setCreatedBy(c.getCreatedBy());
             assignment.setUpdatedBy(c.getUpdatedBy());
             assignment.setCreatedDate(c.getCreatedDate());
