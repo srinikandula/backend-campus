@@ -1,6 +1,5 @@
 package com.anyaudit.controllers;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 import com.anyaudit.models.Client;
 import com.anyaudit.service.ClientManager;
@@ -81,6 +80,31 @@ public class ClientController {
         }
         return resultList;
 
+    }
+
+
+    @GetMapping("/name/{name}")
+    public List<Client> findByName(@PathVariable String name) {
+        return clientService.findByName(name);
+    }
+    @GetMapping("/phone/{phoneNo}")
+    public List<Client> getClientsByPhoneNo(@PathVariable String phoneNo) {
+        return clientService.getClientsByPhoneNo(phoneNo);
+    }
+
+    @GetMapping("/email/{email}")
+    public List<Client> getClientsByEmail(@PathVariable String email) {
+        return clientService.getClientsByEmail(email);
+    }
+
+    @GetMapping("/file/{fileNo}")
+    public List<Client> getClientsByFileNo(@PathVariable String fileNo) {
+        return clientService.getClientsByFileNo(fileNo);
+    }
+
+    @GetMapping("/search/{keyword}")
+    public List<Client> searchClientsByKeyword(@PathVariable String keyword) {
+        return clientService.searchClientsByKeyword(keyword);
     }
 
 

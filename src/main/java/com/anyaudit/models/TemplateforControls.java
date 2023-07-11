@@ -26,6 +26,11 @@ public class TemplateforControls extends BaseModel {
     private String shortAnswer;
 
     @NotBlank
+    @Size(max = 15)
+    @Column(name = "type")
+    private String type;
+
+    @NotBlank
     @Size(max = 50)
     @Column(name = "frequency")
     private String frequency ;
