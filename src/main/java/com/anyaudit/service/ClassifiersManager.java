@@ -2,12 +2,14 @@ package com.anyaudit.service;
 
 
 import com.anyaudit.models.Classifier;
+import com.anyaudit.models.ProcessAuditTools;
 import com.anyaudit.repository.ClassifiersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClassifiersManager {
@@ -35,4 +37,8 @@ public class ClassifiersManager {
         return result;
     }
 
+    public String findNameById(Long id) {
+        Optional<Classifier> form = classifiersRepository.findById(id);
+        return form.map(Classifier::getClassifierName).orElse(null);
+    }
 }

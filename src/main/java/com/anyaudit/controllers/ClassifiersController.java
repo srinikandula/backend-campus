@@ -5,10 +5,9 @@ import com.anyaudit.service.ClassifiersManager;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +24,15 @@ public class ClassifiersController {
     @GetMapping("/list")
     public List<Classifier> getAll() {
         return classifiersManager.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findNameById(@PathVariable Long id) {
+        String name = classifiersManager.findNameById(id);
+        if (name == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Name not found");
+        } else {
+            return ResponseEntity.ok().body("{\"name\": \"" + name + "\"}");
+        }
     }
 }

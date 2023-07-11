@@ -1,5 +1,6 @@
 package com.anyaudit.service;
 
+import com.anyaudit.models.Classifier;
 import com.anyaudit.models.Decisions;
 import com.anyaudit.models.ProcessAuditTools;
 import com.anyaudit.repository.DecisionsRepository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DecisionsManager {
@@ -33,5 +35,8 @@ public class DecisionsManager {
         }
         return result;
     }
-
+    public String findNameById(Long id) {
+        Optional<Decisions> form = decisionsRepository.findById(id);
+        return form.map(Decisions::getName).orElse(null);
+    }
 }
