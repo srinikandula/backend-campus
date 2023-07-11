@@ -10,4 +10,5 @@ import java.util.Optional;
 
 
 public interface ChecklistsQuestionnairesFormsRepository extends JpaRepository<ChecklistsQuestionnairesForms, Long>{
+    Optional<ChecklistsQuestionnairesForms> findById(Long id);
 }

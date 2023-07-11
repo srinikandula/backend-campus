@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 
@@ -37,6 +38,11 @@ public class ChecklistsQuestionnairesFormsManager {
             result.add(assignment);
         }
         return result;
+    }
+
+    public String findNameById(Long id) {
+        Optional<ChecklistsQuestionnairesForms> form = checklistsQuestionnairesFormsRepository.findById(id);
+        return form.map(ChecklistsQuestionnairesForms::getName).orElse(null);
     }
 
 }
