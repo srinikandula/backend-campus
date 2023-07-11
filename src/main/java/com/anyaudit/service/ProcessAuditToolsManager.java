@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProcessAuditToolsManager {
@@ -32,5 +33,10 @@ public class ProcessAuditToolsManager {
             result.add(assignment);
         }
         return result;
+    }
+
+    public String findNameById(Long id) {
+        Optional<ProcessAuditTools> form = processAuditToolsRepository.findById(id);
+        return form.map(ProcessAuditTools::getName).orElse(null);
     }
 }
