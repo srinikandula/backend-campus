@@ -3,6 +3,7 @@ package com.anyaudit.controllers;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.anyaudit.payload.request.LoginRequest;
@@ -68,6 +69,14 @@ public class AuthController {
                          userDetails.getEmail(),
                          userDetails.getPhoneNo(),
                          roles));
+  }
+
+  @PostMapping("/logout")
+  public ResponseEntity<?> logoutUser(HttpServletRequest request) {
+    // Invalidate the user's session
+    request.getSession().invalidate();
+
+    return ResponseEntity.ok("Logged out successfully.");
   }
 
   @PostMapping("/signup")
