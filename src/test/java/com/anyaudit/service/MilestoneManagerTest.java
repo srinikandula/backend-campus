@@ -2,9 +2,6 @@ package com.anyaudit.service;
 
 import com.anyaudit.CoreAppConfig;
 
-import com.anyaudit.models.Assignment;
-import com.anyaudit.models.Milestone;
-import com.anyaudit.repository.MilestoneRepository;
 import com.anyaudit.util.CreateTestData;
 
 import org.junit.After;

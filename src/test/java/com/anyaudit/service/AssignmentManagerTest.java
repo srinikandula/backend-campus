@@ -1,9 +1,6 @@
 package com.anyaudit.service;
 
 import com.anyaudit.CoreAppConfig;
-import com.anyaudit.models.Assignment;
-import com.anyaudit.models.Client;
-import com.anyaudit.repository.AssignmentRepository;
 import com.anyaudit.util.CreateTestData;
 import org.junit.After;
 import org.junit.Before;
@@ -55,7 +52,7 @@ class AssignmentManagerTest {
         //save assignment without data
         Assignment a = new Assignment();
         a.setTypeofAssignment("type");
-        a.setFinancialYear("2022");
+        a.setFinancialYear("22");
         a.setUsers("users");
         a.setEngagementPartner("epartner");
         a.setReviewPartner("rpartner");

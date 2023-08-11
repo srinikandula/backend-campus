@@ -1,34 +1,29 @@
-package com.anyaudit.models;
+package com.anyaudit.db2.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+
 @Entity
-@Table(name = "customizedreports")
+@Table(name = "sms_clients")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class CustomizedReports extends BaseModel{
-
+@Setter
+public class sms_clients {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @NotBlank
-    @Size(max = 30)
-    @Column(name = "draft")
-    private String draft;
-
-
-
-    @NotBlank
-    @Size(max = 10 )
-    @Column(name = "chapter")
-    private String chapter;
+    @Size(max = 50)
+    @Column(name = "year")
+    private String year;
 }
