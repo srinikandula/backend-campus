@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Entity
@@ -19,7 +19,7 @@ public class SmsClients extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "client_id")
-    private int clientId;
+    private Integer clientId;
 
     @Size(max = 255)
     @Column(name = "client_name", nullable = false)
@@ -45,25 +45,25 @@ public class SmsClients extends BaseModel {
     @Column(name = "owner_name", nullable = false)
     private String ownerName;
 
-    @Size(max = 20)
-    @Column(name = "owner_num", nullable = false)
+
+    @Column(name = "owner_num", nullable = false, length = 20)
     private Long ownerNum;
 
     @Size(max = 100)
     @Column(name = "accountant_name", nullable = false)
     private String accountantName;
 
-    @Size(max = 20)
-    @Column(name = "accountant_num", nullable = false)
+    @NotNull
+    @Digits(integer = 20, fraction = 0)
     private Long accountantNum;
 
     @Size(max = 250)
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Size(max = 11)
-    @Column(name = "asgclient_id", nullable = false)
+    @Column(name = "asgclient_id", nullable = false,length = 11)
     private int asgClientId;
+
 
     @Size(max = 10)
     @Column(name = "status", nullable = false)
@@ -74,36 +74,33 @@ public class SmsClients extends BaseModel {
     @Temporal(TemporalType.TIMESTAMP)
     private Date clientCreationDt;
 
-    @Size(max = 11)
-    @Column(name = "domain_id", nullable = false)
+
+    @Column(name = "domain_id", nullable = false,length = 11)
     private int domainId;
 
-    @Size(max = 11)
-    @Column(name = "coa_head_id", nullable = false)
+
+    @Column(name = "coa_head_id", nullable = false,length = 11)
     private int coaHeadId;
 
-    @Size(max = 11)
-    @Column(name = "cos_head_id", nullable = false)
+
+    @Column(name = "cos_head_id", nullable = false,length = 11)
     private int cosHeadId;
 
-    @Size(max = 11)
-    @Column(name = "fss_head_id", nullable = false)
+    @Column(name = "fss_head_id", nullable = false,length = 11)
     private int fssHeadId;
 
-    @Size(max = 11)
-    @Column(name = "branch_id", nullable = false)
+
+    @Column(name = "branch_id", nullable = false,length = 11)
     private int branchId;
 
-    @Size(max = 4)
-    @Column(name = "main_or_sub")
-    private Boolean mainOrSub;
+    @Column(name = "main_or_sub",length = 4, columnDefinition = "tinyint")
+    private Byte mainOrSub;
 
-    @Size(max = 11)
-    @Column(name = "assignment_id", columnDefinition = "int default null")
+
+    @Column(name = "assignment_id",length = 11 ,columnDefinition = "int default null")
     private Integer assignmentId;
 
-    @Size(max = 11)
-    @Column(name = "company_id", columnDefinition = "int default null")
+    @Column(name = "company_id",length = 11,columnDefinition = "int default null")
     private Integer companyId;
 
     @Size(max = 30)
@@ -150,15 +147,14 @@ public class SmsClients extends BaseModel {
     @Column(name = "pt_reg_no", nullable = false)
     private String ptRegNo;
 
-    @Size(max = 4)
+
     @Column(name = "is_fss_updated", nullable = false)
     private Boolean isFssUpdated;
 
-    @Size(max = 10)
-    @Column(name = "is_repeated", nullable = false)
+    @Column(name = "is_repeated",length = 10,nullable = false)
     private Integer isRepeated;
 
-    @Size(max = 1)
+
     @Column(name = "is_cloned", columnDefinition = "tinyint default 0")
     private Boolean isCloned;
 
