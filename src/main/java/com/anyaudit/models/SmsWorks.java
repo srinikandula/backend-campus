@@ -242,7 +242,4 @@ public class SmsWorks extends BaseModel {
     @Column(name = "is_fss", nullable = false)
     private int isFss;
 
-
-
-
 }

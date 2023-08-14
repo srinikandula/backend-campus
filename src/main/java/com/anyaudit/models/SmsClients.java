@@ -55,6 +55,7 @@ public class SmsClients extends BaseModel {
 
     @NotNull
     @Digits(integer = 20, fraction = 0)
+    @Column(name = "accountant_num", nullable = false)
     private Long accountantNum;
 
     @Size(max = 250)
