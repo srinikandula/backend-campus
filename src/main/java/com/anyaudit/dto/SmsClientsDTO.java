@@ -11,11 +11,10 @@ import java.util.Date;
 
 @Getter
 @Setter
-
 public class SmsClientsDTO {
     private Integer clientId;
 
-    @NotEmpty(message = "Client name cannot be empty")
+    @NotBlank(message = "Client name cannot be empty")
     @Size(max = 255, message = "Client name cannot exceed {max} characters")
     private String clientName;
 
@@ -30,7 +29,7 @@ public class SmsClientsDTO {
     @Size(max = 20, message = "Client PAN cannot exceed {max} characters")
     private String clientPan;
 
-    @Size(max = 255, message = "Phone number cannot exceed {max} characters")
+    @Size(max = 13, message = "Phone number cannot exceed {max} characters")
     private String phone;
 
     @NotEmpty(message = "Owner name cannot be empty")

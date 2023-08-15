@@ -7,20 +7,18 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-
 public class SmsClientsManager {
-    private final SmsClientsRepository smsClientsRepository;
-
     @Autowired
-    public SmsClientsManager(SmsClientsRepository smsClientsRepository) {
-        this.smsClientsRepository = smsClientsRepository;
-    }
+    private SmsClientsRepository smsClientsRepository;
+
+
+//    public SmsClientsManager(SmsClientsRepository smsClientsRepository) {
+//        this.smsClientsRepository = smsClientsRepository;
+//    }
 
     public SmsClientsDTO createSmsClient( SmsClientsDTO smsClientsDTO) {
         SmsClients smsClients = new SmsClients();
@@ -56,9 +54,8 @@ public class SmsClientsManager {
         Optional<SmsClients> clientOptional = smsClientsRepository.findById(clientId);
         if (clientOptional.isPresent()) {
             SmsClients existingClient = clientOptional.get();
-            smsClientsDTO.setClientId(clientId); // Not necessary if you remove the line mentioned earlier
+            smsClientsDTO.setClientId(clientId);
             BeanUtils.copyProperties(smsClientsDTO, existingClient);
-
             SmsClients updatedClient = smsClientsRepository.save(existingClient);
             SmsClientsDTO updatedDto = new SmsClientsDTO();
             BeanUtils.copyProperties(updatedClient, updatedDto);

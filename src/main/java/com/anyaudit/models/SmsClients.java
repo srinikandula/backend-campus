@@ -116,11 +116,11 @@ public class SmsClients extends BaseModel {
     @Column(name = "contact_person", nullable = false)
     private String contactPerson;
 
-    @Lob
+
     @Column(name = "accounting_package", nullable = false)
     private String accountingPackage;
 
-    @Lob
+
     @Column(name = "registered_address", nullable = false)
     private String registeredAddress;
 
