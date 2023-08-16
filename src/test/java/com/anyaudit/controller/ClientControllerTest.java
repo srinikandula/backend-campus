@@ -4,12 +4,18 @@ import com.anyaudit.BaseControllerTest;
 import com.anyaudit.models.Client;
 import com.anyaudit.models.Framework;
 import com.anyaudit.repository.ClientRepository;
+import com.anyaudit.repository.FrameworkRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import org.json.simple.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -19,6 +25,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
+@ActiveProfiles("test")
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class ClientControllerTest extends BaseControllerTest {
 
     @Autowired
@@ -26,6 +36,9 @@ public class ClientControllerTest extends BaseControllerTest {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private FrameworkRepository frameworkRepository;
 
     final ObjectMapper mapper = new ObjectMapper();
 
@@ -64,7 +77,7 @@ public class ClientControllerTest extends BaseControllerTest {
     public void testGetClientById() throws Exception {
         Framework framework = new Framework();
         framework.setFinancialFramework("TestClientFramework");
-
+        framework = frameworkRepository.save(framework);
         Client client = new Client(Long.valueOf(4),"TestClient","9988667744","testClient123@gmail.com","234",framework);
 //        Client c = clientRepository.findById(Long.valueOf(4)).orElse(client);
         client = clientRepository.save(client);
@@ -73,11 +86,11 @@ public class ClientControllerTest extends BaseControllerTest {
         String token = getToken();
         /*Client client = clientRepository.save(
                 new Client(new Long(3),"TestClient","9988667744","testClient123@gmail.com","234",framework));*/
-        String uri = "/api/client/findById/"+client.getId();
+        String uri = "/api/client/"+client.getId();
         ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get(uri)
                 .header("Authorization", token));
         resultActions.andExpect(status().isOk());
-        resultActions.andExpect(jsonPath("$.name").value(""));
+        resultActions.andExpect(jsonPath("$.name").value("TestClient"));
     }
 
     public static String asJsonString(final Object obj) {

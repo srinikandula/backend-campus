@@ -15,8 +15,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.HashSet;
 import java.util.Set;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@AutoConfigureMockMvc
 @Getter
 @Setter
 public abstract class BaseControllerTest extends BaseTest{
@@ -26,6 +24,7 @@ public abstract class BaseControllerTest extends BaseTest{
     public static final String userName = "TestUser";
     protected String token ;
     protected User currentUser;
+
     public void setup() {
         Set<Role> roles = new HashSet<>();
         roles.add(new Role(ERole.ROLE_ADMIN));
