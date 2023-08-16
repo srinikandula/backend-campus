@@ -1,21 +1,24 @@
 package com.anyaudit.controllers;
 
 import com.anyaudit.models.Client;
+import com.anyaudit.payload.response.MessageResponse;
+import com.anyaudit.repository.ClientRepository;
 import com.anyaudit.service.ClientManager;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@Getter
-@Setter
 @RequestMapping("/api/client")
 public class ClientController {
 
@@ -37,9 +40,15 @@ public class ClientController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Client> addClient(@RequestBody Client client) {
-        Client saved = clientService.addClient(client);
-        return ResponseEntity.created(URI.create("/clients/" + saved.getId())).body(saved);
+    public ResponseEntity<Client> addClient( @RequestBody Client client ) {
+        List<String> errors = validateClient(client);
+        if (!errors.isEmpty()) {
+            return new ResponseEntity(errors, HttpStatus.BAD_REQUEST);
+        } else {
+            Client validClient = new Client();
+
+            return ResponseEntity.ok(validClient);
+        }
     }
 
     @PutMapping("/{id}")
@@ -79,4 +88,14 @@ public class ClientController {
 //    }
 
 
+    private List<String> validateClient(Client client){
+        List<String> errors = new ArrayList<>();
+        if(client.getEmail() == null || client.getEmail().isEmpty()){
+            errors.add("CLient Email can not be null");
+        }
+        if (client.getName().length() < 6){
+            errors.add("Client name should be minimum of 6 characters");
+        }
+        return errors;
+    }
 }

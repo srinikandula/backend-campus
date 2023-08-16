@@ -12,10 +12,7 @@ import java.util.List;
 public class    ClientManager {
     @Autowired
     private ClientRepository clientRepository;
-    @Autowired
-    public ClientManager(ClientRepository clientRepository) {
-        this.clientRepository = clientRepository;
-    }
+
 
     public Client addClient(Client client) {
         if(client.getName().length() < 6) {
@@ -24,6 +21,7 @@ public class    ClientManager {
         Client savedClient = clientRepository.save(client);
         return savedClient;
     }
+
 
     public List<Client> getAllClients() {
         List<Client> assignments = clientRepository.findAll();
