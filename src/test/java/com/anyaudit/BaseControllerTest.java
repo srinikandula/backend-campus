@@ -5,6 +5,7 @@ import com.anyaudit.models.ERole;
 import com.anyaudit.models.Role;
 import com.anyaudit.models.User;
 import com.anyaudit.repository.UserRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;
 import org.junit.runner.RunWith;
@@ -33,4 +34,12 @@ public abstract class BaseControllerTest extends BaseTest{
         );
         token = "Bearer " + TokenAuthenticationService.createToken(currentUser.getUsername());
     }
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

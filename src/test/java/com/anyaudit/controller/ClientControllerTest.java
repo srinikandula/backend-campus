@@ -79,13 +79,9 @@ public class ClientControllerTest extends BaseControllerTest {
         framework.setFinancialFramework("TestClientFramework");
         framework = frameworkRepository.save(framework);
         Client client = new Client(Long.valueOf(4),"TestClient","9988667744","testClient123@gmail.com","234",framework);
-//        Client c = clientRepository.findById(Long.valueOf(4)).orElse(client);
         client = clientRepository.save(client);
-
-
         String token = getToken();
-        /*Client client = clientRepository.save(
-                new Client(new Long(3),"TestClient","9988667744","testClient123@gmail.com","234",framework));*/
+
         String uri = "/api/client/"+client.getId();
         ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get(uri)
                 .header("Authorization", token));
@@ -93,13 +89,6 @@ public class ClientControllerTest extends BaseControllerTest {
         resultActions.andExpect(jsonPath("$.name").value("TestClient"));
     }
 
-    public static String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @Test
     public void testGetClientsAPI(){
