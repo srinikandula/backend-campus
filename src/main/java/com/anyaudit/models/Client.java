@@ -24,7 +24,7 @@ public class Client extends BaseModel {
   private Long id;
 
   @NotBlank
-  @Column(name = "name")
+  @Column(name = "name",nullable = false)
   private String name;
 
   @NotBlank

@@ -9,6 +9,7 @@ import com.anyaudit.repository.SmsClientsRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -17,12 +18,11 @@ import java.util.Optional;
 
 public class SmsClientsManagerTest {
     private SmsClientsRepository repository;
+    @Autowired
     private SmsClientsManager smsClientsManager;
 
     @BeforeEach
     void setUp() {
-        repository = mock(SmsClientsRepository.class);
-        smsClientsManager = new SmsClientsManager(repository);
     }
 
     @Test

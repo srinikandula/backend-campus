@@ -1,8 +1,7 @@
 package com.anyaudit.dto;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 
 import javax.persistence.Lob;
@@ -11,6 +10,9 @@ import java.util.Date;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+//@RequiredArgsConstructor
 public class SmsClientsDTO {
     private Integer clientId;
 
