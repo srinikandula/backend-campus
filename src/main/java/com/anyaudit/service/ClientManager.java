@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class    ClientManager {
+public class ClientManager {
     @Autowired
     private ClientRepository clientRepository;
 
