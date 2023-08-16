@@ -19,6 +19,8 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@Getter
+@Setter
 @RequestMapping("/api/client")
 public class ClientController {
 
