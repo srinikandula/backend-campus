@@ -40,14 +40,13 @@ public class ClientController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Client> addClient( @RequestBody Client client ) {
+    public ResponseEntity<Client> addClient(@RequestBody Client client) {
         List<String> errors = validateClient(client);
         if (!errors.isEmpty()) {
             return new ResponseEntity(errors, HttpStatus.BAD_REQUEST);
         } else {
-            Client validClient = new Client();
-
-            return ResponseEntity.ok(validClient);
+            Client savedClient = clientService.addClient(client);
+            return new ResponseEntity<>(savedClient, HttpStatus.CREATED);
         }
     }
 
