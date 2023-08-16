@@ -15,7 +15,9 @@ import javax.validation.Valid;
 import java.net.URI;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -40,10 +42,10 @@ public class ClientController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Client> addClient(@RequestBody Client client) {
-        List<String> errors = validateClient(client);
+    public ResponseEntity<?> addClient(@RequestBody Client client) {
+        Map<String, String> errors = validateClient(client);
         if (!errors.isEmpty()) {
-            return new ResponseEntity(errors, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
         } else {
             Client savedClient = clientService.addClient(client);
             return new ResponseEntity<>(savedClient, HttpStatus.CREATED);
@@ -87,14 +89,30 @@ public class ClientController {
 //    }
 
 
-    private List<String> validateClient(Client client){
-        List<String> errors = new ArrayList<>();
-        if(client.getEmail() == null || client.getEmail().isEmpty()){
-            errors.add("CLient Email can not be null");
+    private Map<String, String> validateClient(Client client) {
+        Map<String, String> errors = new HashMap<>();
+
+        if (client.getEmail() == null || client.getEmail().isEmpty()) {
+            errors.put("email", "Client email can not be null");
         }
-        if (client.getName().length() < 6){
-            errors.add("Client name should be minimum of 6 characters");
+        if (client.getName().length() < 6) {
+            errors.put("name", "Client name should be a minimum of 6 characters");
         }
+
+        String phone = client.getPhoneNo();
+        if (!phone.matches("\\d+")) {
+            errors.put("phone", "Phone should only contain numerical digits");
+        } else if (phone.length() > 15) {
+            errors.put("phone", "Phone can take up to 15 characters");
+        }
+
+        String file = client.getFileNo();
+        if (!file.matches("^[a-zA-Z0-9]+$")) {
+            errors.put("fileNo", "File number should only contain letters and numerical digits");
+        } else if (file.length() > 10) {
+            errors.put("fileNo", "File number can take up to 10 characters");
+        }
+
         return errors;
     }
 }
