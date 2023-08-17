@@ -147,8 +147,8 @@ public class AuthController {
     List<Map<String, Object>> resultList = new ArrayList<>();
     for (Object[] user : users) {
       Map<String, Object> clientMap = new HashMap<>();
-      clientMap.put("value", user[0]);
-      clientMap.put("label", user[1]);
+      clientMap.put("id", user[0]);
+      clientMap.put("username", user[1]);
       resultList.add(clientMap);
     }
     return resultList;
