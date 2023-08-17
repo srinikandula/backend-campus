@@ -1,2 +1,3 @@
-package com.anyaudit.repository;public interface AssignmentSubdecisionsValuesRepository {
+package com.anyaudit.repository;
+public interface AssignmentSubdecisionsValuesRepository {
 }
