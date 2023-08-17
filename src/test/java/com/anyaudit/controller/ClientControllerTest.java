@@ -87,6 +87,7 @@ public class ClientControllerTest extends BaseControllerTest {
                 .header("Authorization", token));
         resultActions.andExpect(status().isOk());
         resultActions.andExpect(jsonPath("$.name").value("TestClient"));
+        resultActions.andExpect(jsonPath("$.phoneNo").value(client.getPhoneNo()));
     }
 
 
