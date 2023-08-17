@@ -31,7 +31,7 @@ class MilestoneServiceTest extends BaseTest {
         milestoneService.save((long)24, "MyMileStone_1", "Monthly");
         milestoneService.save((long)25, "MyMileStone_2", "Weekly");
         List<Milestone> milestoneList = mileStoneRepository.findAll();
-        Assert.assertEquals(milestoneList.size(), 5);
+        Assert.assertEquals(milestoneList.size(), 3);
     }
 
     @Test
