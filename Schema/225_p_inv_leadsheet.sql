@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `p_inv_leadsheet` (
+  `lid` int(11) NOT NULL AUTO_INCREMENT,
+  `assignment_id` int(11) NOT NULL,
+  `rawmaterial` double(10,2) NOT NULL,
+  `work_in_progress` double(10,2) NOT NULL,
+  `finished_goods` double(10,2) NOT NULL,
+  `sub_total1` double(10,2) NOT NULL,
+  `stores` double(10,2) NOT NULL,
+  `spares` double(10,2) NOT NULL,
+  `consumables` double(10,2) NOT NULL,
+  `sub_total2` double(10,2) NOT NULL,
+  `grand_total` double(10,2) NOT NULL,
+  `doer_user` int(11) NOT NULL,
+  `approver_user` int(11) NOT NULL,
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` int(11) NOT NULL,
+  `updated_on` datetime NOT NULL,
+  `updated_by` int(11) NOT NULL,
+  PRIMARY KEY (`lid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

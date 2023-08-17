@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS `pop_status` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `assignment_id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `work_type_id` int(11) NOT NULL,
+  `work_type_name` varchar(255) DEFAULT NULL,
+  `table_name` varchar(255) NOT NULL,
+  `record_id` int(11) NOT NULL,
+  `scheduler_id` int(12) NOT NULL,
+  `redirect_url` text,
+  `as_doer` int(11) NOT NULL,
+  `as_approver` int(11) NOT NULL,
+  `doer_role` enum('internal','external') DEFAULT NULL,
+  `approver_role` enum('internal','external') DEFAULT NULL,
+  `status` int(11) NOT NULL COMMENT '0-Not initiated,1-Submitted,2-Resubmitted,3-Rejected,4-Approved',
+  `created_at` datetime NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `assignment_id` (`assignment_id`),
+  KEY `as_doer` (`as_doer`,`as_approver`),
+  KEY `assignment_id_2` (`assignment_id`,`as_doer`,`as_approver`,`status`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

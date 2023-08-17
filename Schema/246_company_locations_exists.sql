@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS `company_locations_exists` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `cid` int(11) NOT NULL,
+  `location_name` varchar(255) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

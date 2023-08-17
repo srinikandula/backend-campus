@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS `fsr_annex7_chapter_xvii_b` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `assignment_id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `tan` varchar(100) NOT NULL,
+  `section` varchar(100) NOT NULL,
+  `nature` text NOT NULL,
+  `total_amount_receipt_col3` float(11,2) NOT NULL,
+  `total_amount_deduct_col4` float(11,2) NOT NULL,
+  `total_amount_tax_deducted_col5` float(11,2) NOT NULL,
+  `amount_tax_ded_col6` float(11,2) NOT NULL,
+  `total_amount_specified_date_col7` float(11,2) NOT NULL,
+  `amount_tax_deducted_col8` float(11,2) NOT NULL,
+  `amount_tax_deposited_govt_col6_col8_col10` float(11,2) NOT NULL,
+  `amount_tax_not_deducted_col11` float(11,2) NOT NULL,
+  `status` int(1) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_on` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `assignment_id` (`assignment_id`),
+  KEY `client_id` (`client_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

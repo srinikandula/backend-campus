@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `scheduler_questionnaire` (
+  `sch_que_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sheduler_id` int(11) NOT NULL,
+  `assignment_id` int(11) NOT NULL,
+  `question` text NOT NULL,
+  `answer` text NOT NULL,
+  `approver_user` int(11) NOT NULL,
+  `doer_user` int(11) NOT NULL,
+  `created_on` date NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `approved_by` int(11) NOT NULL,
+  `approved_dt` date NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1' COMMENT '1=not initiated,2-submitted,3-rejected,4-approved',
+  `given_by` int(11) NOT NULL,
+  `given_dt` date NOT NULL,
+  `elementid` int(11) NOT NULL,
+  `subjectid` int(11) NOT NULL,
+  `type` int(11) NOT NULL COMMENT '1=normal,2=collections',
+  PRIMARY KEY (`sch_que_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

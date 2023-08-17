@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `mapping_fss_rules` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `map_rule_no` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_active` tinyint(4) NOT NULL,
+  `rule_type` enum('GL_NAME','FSS','GL_BALANCE','PARKING_ID') DEFAULT NULL,
+  `gl_name` varchar(255) DEFAULT NULL,
+  `set_fss_id` int(11) NOT NULL,
+  `set_parking_id` int(11) DEFAULT NULL,
+  `gl_balance` tinyint(4) NOT NULL,
+  `gl_group` int(11) DEFAULT NULL,
+  `global_or_local` tinyint(4) NOT NULL,
+  `where_parking_id` int(11) NOT NULL,
+  `allocate_or_park` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `client_id` (`client_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

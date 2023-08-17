@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS `inspectiondata_impact` (
+  `idimpact_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `assignment_id` int(11) NOT NULL,
+  `inspdata_id` int(11) NOT NULL,
+  `impact_id` int(11) NOT NULL,
+  `impact_type` char(1) NOT NULL DEFAULT 'u' COMMENT 'u-audit_impact,p-audit_impact_program',
+  `impact_value` double(8,2) NOT NULL,
+  `adjusted_amt` double(10,2) NOT NULL,
+  `unadjusted_amt` double(10,2) NOT NULL,
+  `fss_id` int(11) NOT NULL,
+  `coa_id` int(11) NOT NULL,
+  `cos_id` int(11) NOT NULL,
+  `impact_remarks` varchar(100) NOT NULL,
+  `element_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  `audit_response_id` int(11) NOT NULL,
+  `ass_seq_id` int(11) NOT NULL,
+  `ass_seq_txt` varchar(15) NOT NULL,
+  `element_name` varchar(200) NOT NULL,
+  `subject_name` varchar(200) NOT NULL,
+  PRIMARY KEY (`idimpact_id`),
+  KEY `assignment_id` (`assignment_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

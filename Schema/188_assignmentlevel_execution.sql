@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS `assignmentlevel_execution` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tool_type` int(5) NOT NULL,
+  `tool_type_id` int(5) NOT NULL,
+  `approver_user` int(10) NOT NULL,
+  `doer_user` int(10) NOT NULL,
+  `created_by` int(9) NOT NULL,
+  `creation_dt` date NOT NULL,
+  `assignment_id` int(5) NOT NULL,
+  `status` int(1) NOT NULL COMMENT '1-Initiated,2-Inprogress,3-completed/closed',
+  `approved_by` int(11) NOT NULL,
+  `approved_on` datetime NOT NULL,
+  `reviewed_by` int(11) NOT NULL,
+  `reviewed_on` datetime NOT NULL,
+  `review_status` int(1) DEFAULT NULL COMMENT '0-not reviewed , 1-reviewed',
+  `scope_type` int(5) NOT NULL,
+  `timeline` int(5) NOT NULL,
+  `rule_status` int(1) NOT NULL,
+  `assign_status` int(2) NOT NULL DEFAULT '0' COMMENT '0-not sassigned, 1- Assigned',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

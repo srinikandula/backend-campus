@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS `wpa_control_answers` (
+  `value_id` int(11) NOT NULL AUTO_INCREMENT,
+  `page_type` int(11) NOT NULL,
+  `page_type_id` int(11) NOT NULL COMMENT '1-process,2-workflow,3-Agreement (Node ids)',
+  `answer` text NOT NULL,
+  `probability_of_occurance` int(5) NOT NULL,
+  `strength_of_control` int(11) NOT NULL,
+  `got_controlled` int(5) NOT NULL,
+  `execution_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL COMMENT '1=not initiated,2-submitted,3-rejected,4-approved ',
+  `given_by` int(11) NOT NULL,
+  `given_dt` date NOT NULL,
+  `approver_user` int(11) NOT NULL,
+  `doer_user` int(11) NOT NULL,
+  `approved_by` int(11) NOT NULL,
+  `activity_control_id` int(11) NOT NULL,
+  `approved_dt` date NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `assignment_id` int(11) NOT NULL,
+  `domain_id` int(11) NOT NULL,
+  PRIMARY KEY (`value_id`),
+  KEY `execution_id` (`execution_id`,`approver_user`,`doer_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

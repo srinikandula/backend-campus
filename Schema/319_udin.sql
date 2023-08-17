@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `udin` (
+  `udin_id` int(11) NOT NULL AUTO_INCREMENT,
+  `client` int(11) NOT NULL,
+  `assignment` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `udin_no` varchar(30) NOT NULL,
+  `created_date` date NOT NULL,
+  `issued_by` int(11) NOT NULL,
+  `attachment` varchar(250) NOT NULL,
+  `status` int(11) NOT NULL COMMENT '1=approved,2=notapproved',
+  `domain` int(11) NOT NULL,
+  `date_udin` date NOT NULL,
+  `date_certificate` date NOT NULL,
+  `issued_date` date NOT NULL,
+  `generated_by` int(11) DEFAULT NULL,
+  `tobe_approved` int(11) DEFAULT NULL,
+  PRIMARY KEY (`udin_id`),
+  KEY `client` (`client`),
+  KEY `assignment` (`assignment`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS `fsr_fss_print` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1: Fss List 2:Table 3: Text',
+  `client_id` int(11) NOT NULL,
+  `assignment_id` int(11) NOT NULL,
+  `assignment_fss_id` int(11) NOT NULL COMMENT 'Fk: fss_assignment_level',
+  `table_id` int(11) NOT NULL,
+  `text_id` int(11) NOT NULL,
+  `parent_node_id` int(11) NOT NULL COMMENT 'To manage the sub content. Ex: 1.1, 2.3 etc.',
+  `node_sequence` int(11) NOT NULL,
+  `node_level` int(11) DEFAULT NULL,
+  `node_code` varchar(255) DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `updated_by` int(11) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_on` datetime NOT NULL,
+  `node_name_self` varchar(255) DEFAULT NULL,
+  `node_name` varchar(255) DEFAULT NULL,
+  `is_hidden` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 => Show, 1 => Hidden',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

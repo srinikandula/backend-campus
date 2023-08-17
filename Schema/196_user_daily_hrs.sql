@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS `user_daily_hrs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `day` date NOT NULL,
+  `first_log_in_time` time NOT NULL,
+  `first_log_off_time` time NOT NULL,
+  `first_duration` double NOT NULL,
+  `second_log_in_time` time DEFAULT NULL,
+  `second_log_off_time` time DEFAULT NULL,
+  `second_duration` double DEFAULT NULL,
+  `day_status` int(11) NOT NULL COMMENT '0-created,1-submitted,2- Rejected,3-Approved',
+  `creation_dt` datetime NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `reject_note` text NOT NULL,
+  `day_note` text NOT NULL,
+  `day_note2` text,
+  `login_approval` int(11) NOT NULL COMMENT '0-not approved,1- approved, 2- rejected',
+  `login_reject_note` text NOT NULL,
+  `location` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

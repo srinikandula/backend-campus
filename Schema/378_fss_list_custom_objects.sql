@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `fss_list_custom_objects` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `assignment_id` int(11) NOT NULL,
+  `note_no` varchar(255) DEFAULT NULL,
+  `note_title` varchar(255) DEFAULT NULL,
+  `denomination` varchar(255) DEFAULT NULL,
+  `subheading` tinyint(4) DEFAULT NULL,
+  `subtotal` tinyint(4) DEFAULT NULL,
+  `parent_note` int(11) DEFAULT NULL,
+  `show_hide` tinyint(4) DEFAULT NULL,
+  `object_name` varchar(255) DEFAULT NULL,
+  `textdata` text,
+  `level` int(11) NOT NULL,
+  `fss_custom_parent_id` int(11) NOT NULL,
+  `serial_no` int(11) NOT NULL,
+  `mode` enum('text','object','table') NOT NULL,
+  `beforeafterlbl` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `assignment_id` (`assignment_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

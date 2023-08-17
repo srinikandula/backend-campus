@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS `company_user` (
+  `cuid` int(11) NOT NULL AUTO_INCREMENT,
+  `cid` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  PRIMARY KEY (`cuid`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
