@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `patches_data` (
+  `pid` int(11) NOT NULL AUTO_INCREMENT,
+  `patch_name` varchar(250) NOT NULL,
+  `creation_dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `patch_status` int(11) NOT NULL DEFAULT '1' COMMENT '0-inactive,1-active',
+  `patch_usage_status` varchar(250) NOT NULL DEFAULT 'opened' COMMENT 'opened,closed',
+  `category_id` int(11) NOT NULL,
+  `subcategory_id` int(11) NOT NULL,
+  `no_of_downloads` int(11) NOT NULL,
+  `author_id` int(11) NOT NULL,
+  `patch_type` varchar(50) NOT NULL COMMENT 'own,author',
+  `front_cover_image` int(11) NOT NULL COMMENT 'image path id',
+  `review_rating` double(15,2) NOT NULL,
+  `price` double(18,2) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `patch_desc` text,
+  `tool_utility` int(11) NOT NULL,
+  PRIMARY KEY (`pid`),
+  UNIQUE KEY `patch_name` (`patch_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

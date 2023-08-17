@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `app_ec` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  `userid` varchar(50) NOT NULL,
+  `pwd` varchar(250) NOT NULL,
+  `userphoto` varchar(250) DEFAULT NULL,
+  `phone` bigint(20) NOT NULL,
+  `reguser_id` int(9) DEFAULT NULL,
+  `status` char(15) NOT NULL DEFAULT 'active' COMMENT 'active,inactive',
+  `creation_dt` datetime NOT NULL,
+  `domain_id` int(11) NOT NULL,
+  `profile_pic` varchar(250) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password_updated_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `branch_id` int(10) DEFAULT NULL,
+  `branch_office_id` int(10) DEFAULT NULL,
+  `licence_pack_id` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `userid` (`userid`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS `execution` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `element_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  `tool_type` int(11) NOT NULL,
+  `tool_type_id` int(11) NOT NULL,
+  `approver_user` int(11) NOT NULL,
+  `doer_user` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `creation_dt` date NOT NULL,
+  `assignment_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL COMMENT '1-Initiated,2-Inprogress,3-completed/closed',
+  `approved_by` int(11) NOT NULL,
+  `approved_on` datetime NOT NULL,
+  `reviewed_by` int(11) NOT NULL,
+  `reviewed_on` datetime NOT NULL,
+  `review_status` int(1) DEFAULT NULL COMMENT '0-not reviewed , 1-reviewed',
+  `scope_type` int(11) NOT NULL,
+  `element_name` varchar(200) DEFAULT NULL,
+  `subject_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tool_type` (`tool_type`,`assignment_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

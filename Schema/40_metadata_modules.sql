@@ -1,0 +1,58 @@
+
+DROP TABLE IF EXISTS `modules`;
+
+CREATE TABLE IF NOT EXISTS `modules` (
+  `mid` int(11) NOT NULL AUTO_INCREMENT,
+  `module_name` varchar(250) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(1) NOT NULL,
+  PRIMARY KEY (`mid`),
+  UNIQUE KEY `uu` (`module_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+
+INSERT INTO `modules` (`mid`, `module_name`, `created_by`, `created_on`, `status`) VALUES
+(1, 'Dashboard', 228, '2021-02-23 12:52:55', 0),
+(2, 'Plan and Performance', 228, '2021-02-23 12:52:55', 0),
+(3, 'File Management', 228, '2021-02-23 12:52:55', 0),
+(4, 'Meetings and Events', 228, '2021-02-23 12:52:55', 0),
+(5, 'Leave', 228, '2021-02-23 12:52:55', 0),
+(6, 'SMS', 228, '2021-02-23 12:52:55', 0),
+(7, 'Bill', 228, '2021-02-23 12:52:55', 0),
+(8, 'Todo', 228, '2021-02-23 12:52:55', 0),
+(9, 'Password Vault', 228, '2021-02-23 12:52:55', 0),
+(10, 'Expiry', 228, '2021-02-23 12:52:55', 0),
+(11, 'UDIN', 228, '2021-02-23 12:52:55', 0),
+(12, 'Communication', 228, '2021-02-23 12:52:55', 0),
+(13, 'Holidays', 228, '2021-02-23 12:52:55', 0),
+(14, 'Score', 228, '2021-02-23 12:52:55', 0),
+(15, 'Admin Reports', 228, '2021-02-23 12:52:55', 1),
+(16, 'Call Logs', 228, '2021-02-23 12:52:55', 0),
+(17, 'Data Collection', 228, '2021-02-23 12:52:55', 0),
+(18, 'Data Analytics', 228, '2021-02-23 12:52:55', 0),
+(19, 'Workflow and Agreement', 228, '2021-02-23 12:52:55', 0),
+(20, 'Process Capture', 228, '2021-02-23 12:52:55', 1),
+(21, 'Compliance Testing', 228, '2021-02-23 12:52:55', 0),
+(22, 'Analytical testing', 228, '2021-02-23 12:52:55', 0),
+(23, 'Substantial Testing', 228, '2021-02-23 12:52:55', 0),
+(24, 'Audit Documentation', 228, '2021-02-23 12:52:55', 1),
+(25, 'Audit Communication', 228, '2021-02-23 12:52:55', 0),
+(26, 'Audit Findings', 228, '2021-02-23 12:52:55', 0),
+(27, 'Audit Reports', 228, '2021-04-03 11:12:21', 0),
+(28, 'Audit Signoff', 0, '2021-04-03 11:12:21', 0),
+(29, 'FSS - 1', 228, '2021-04-03 11:15:46', 1),
+(30, 'FSS - 2', 0, '2021-04-03 11:15:46', 1),
+(31, 'Audit Planning', 0, '2021-04-03 11:15:46', 0),
+(32, 'Audit Masters', 0, '2021-04-03 11:15:46', 1),
+(33, 'Gst Reports', 0, '2021-04-03 11:15:46', 1),
+(34, 'Income Tax Reports', 0, '2021-04-03 11:15:46', 1),
+(35, 'Custom Reports', 0, '2021-04-03 11:15:46', 0),
+(36, 'Custom Drafts', 0, '2021-04-03 11:15:46', 1),
+(37, 'Discussion', 0, '2021-04-03 11:15:46', 0),
+(38, 'Decisions', 0, '2021-04-03 11:15:46', 1),
+(39, 'SuperDomain', 228, '2021-06-17 07:01:15', 1),
+(40, 'Patches', 228, '2021-06-17 07:01:41', 1),
+(41, 'Campus', 228, '2023-01-27 14:40:57', 1),
+(42, 'Office Management', 228, '2023-01-27 14:43:38', 1),
+(43, 'Collection & Analytics', 228, '2023-01-27 14:43:38', 1);
+COMMIT;

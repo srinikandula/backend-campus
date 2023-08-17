@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS `audit_impact` (
+  `impact_id` int(11) NOT NULL AUTO_INCREMENT,
+  `impact_name` varchar(255) NOT NULL,
+  `impact_status` varchar(255) NOT NULL,
+  `assignment_id` int(11) NOT NULL,
+  `domain_id` int(11) NOT NULL,
+  `ai_type` varchar(100) NOT NULL COMMENT 'type1,type2,type3,type4,type5 . type1,type5-Aggregate input. type2 : directi/p. type3: breakup details. type4: calculations on calc. 2,3,4,5: programmers. user can create only type 1',
+  `ai_type_ds` varchar(100) NOT NULL,
+  `input_type` int(2) NOT NULL COMMENT '1-Int,2-Decimal,3-Date,4-Varchar,5-select',
+  `option_list_id` int(11) NOT NULL,
+  `annexure_id` int(11) NOT NULL,
+  `annexure_node_id` int(11) NOT NULL,
+  `group_type` int(5) NOT NULL COMMENT '1-sum,2 -min, 3-max, 4- avg',
+  `sync_id` int(11) NOT NULL,
+  `sync_on` datetime NOT NULL,
+  `master_id` int(11) NOT NULL,
+  `formula` text,
+  `minor_id` int(11) NOT NULL DEFAULT '0' COMMENT 'FK: fss_minors',
+  `created_by` int(11) NOT NULL,
+  `created_on` datetime NOT NULL,
+  PRIMARY KEY (`impact_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

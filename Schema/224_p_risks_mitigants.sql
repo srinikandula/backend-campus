@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS `p_risks_mitigants` (
+  `prm_id` int(11) NOT NULL AUTO_INCREMENT,
+  `assertion_id` int(11) NOT NULL,
+  `potential_risk_identified` int(11) NOT NULL,
+  `potential_misstatement` int(11) NOT NULL,
+  `fss_risk_id` int(11) DEFAULT NULL,
+  `fss_line_id` int(11) DEFAULT NULL,
+  `tool_scheduler_id` int(11) NOT NULL,
+  `procedure_id` int(11) NOT NULL,
+  `audit_approach` text NOT NULL,
+  `assignment_id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `domain_id` int(11) NOT NULL,
+  `status` int(2) NOT NULL,
+  `doer_id` int(11) NOT NULL,
+  `approver_id` int(11) NOT NULL,
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_on` date NOT NULL,
+  `updated_by` int(11) NOT NULL,
+  PRIMARY KEY (`prm_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

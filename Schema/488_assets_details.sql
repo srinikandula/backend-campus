@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `assets_details` (
+  `asset_id` int(11) NOT NULL AUTO_INCREMENT,
+  `asset_code` varchar(50) NOT NULL,
+  `asset_name` varchar(250) NOT NULL,
+  `vendor` varchar(200) NOT NULL,
+  `year_purchase` varchar(10) NOT NULL,
+  `nos` varchar(5) NOT NULL,
+  `subject` int(11) NOT NULL,
+  `category` int(11) NOT NULL,
+  `sub_category` int(11) NOT NULL,
+  `location` int(11) NOT NULL,
+  `placement_no` varchar(50) NOT NULL,
+  `domain` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_on` date NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `status_approval` int(11) NOT NULL DEFAULT '0' COMMENT '0=no status,1=requested,2=Cancelled request,3=issued,4=returned,5=confirmed return,6=cancelled confirmation return,7- Approved Request(After 1 )',
+  `movement_ref_id` int(11) NOT NULL,
+  PRIMARY KEY (`asset_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;

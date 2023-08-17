@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `kob2` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ass_seq_id` int(11) NOT NULL,
+  `ass_seq_txt` varchar(15) NOT NULL,
+  `date_kob2` date NOT NULL,
+  `nature_event` varchar(250) NOT NULL,
+  `observation` text NOT NULL,
+  `area_effected` varchar(200) NOT NULL,
+  `attachment_id` int(11) DEFAULT NULL,
+  `client_id` int(11) NOT NULL,
+  `assignment_id` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_on` date NOT NULL,
+  `type` int(11) NOT NULL COMMENT '1=correspondance_management,2=significant_management,3=significant_reporting,4=audit review note',
+  `approved` tinyint(4) NOT NULL,
+  `approved_by` int(11) NOT NULL,
+  `doer_user` int(11) NOT NULL,
+  `approver_user` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
