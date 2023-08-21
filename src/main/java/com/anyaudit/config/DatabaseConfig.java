@@ -21,13 +21,13 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration
-@EnableTransactionManagement
-@EnableJpaRepositories(
-        entityManagerFactoryRef = "FirstEntityManagerFactory",
-        basePackages 	 = {"com.anyaudit.repository"},
-        transactionManagerRef = "FirstTransactionManager"
-)
+//@Configuration
+//@EnableTransactionManagement
+//@EnableJpaRepositories(
+//        entityManagerFactoryRef = "FirstEntityManagerFactory",
+//        basePackages 	 = {"com.anyaudit.repository"},
+//        transactionManagerRef = "FirstTransactionManager"
+//)
 public class DatabaseConfig {
 
     @Autowired

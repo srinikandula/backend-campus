@@ -1,6 +1,6 @@
 package com.anyaudit.service;
 
-import com.anyaudit.BaseTest;
+import com.anyaudit.base.BaseTest;
 import com.anyaudit.models.Client;
 import com.anyaudit.repository.ClientRepository;
 import org.junit.jupiter.api.Test;
