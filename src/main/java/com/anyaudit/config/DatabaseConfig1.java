@@ -20,12 +20,12 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration
-@EnableTransactionManagement
-@EnableJpaRepositories(
-        entityManagerFactoryRef = "SecondManagerFactory",
-        basePackages = {"com.anyaudit.db2.repository"},
-        transactionManagerRef = "TransactionManager")
+//@Configuration
+//@EnableTransactionManagement
+//@EnableJpaRepositories(
+//        entityManagerFactoryRef = "SecondManagerFactory",
+//        basePackages = {"com.anyaudit.db2.repository"},
+//        transactionManagerRef = "TransactionManager")
 
 public class DatabaseConfig1 {
 

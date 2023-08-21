@@ -1,4 +1,4 @@
-package com.anyaudit;
+package com.anyaudit.base;
 
 import com.anyaudit.controller.TokenAuthenticationService;
 import com.anyaudit.models.ERole;
@@ -8,24 +8,28 @@ import com.anyaudit.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;
+import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@AutoConfigureMockMvc
+@RunWith(SpringRunner.class)
 @Getter
 @Setter
-public abstract class BaseControllerTest extends BaseTest{
-
+public abstract class BaseTestController extends BaseTest{
     @Autowired
     private UserRepository userRepository;
+
     public static final String userName = "TestUser";
     protected String token ;
     protected User currentUser;
 
+    @Before
     public void setup() {
         Set<Role> roles = new HashSet<>();
         roles.add(new Role(ERole.ROLE_ADMIN));
@@ -41,5 +45,4 @@ public abstract class BaseControllerTest extends BaseTest{
             throw new RuntimeException(e);
         }
     }
-
 }
