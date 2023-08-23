@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @Table(name = "agreement_assignment_headds")
@@ -17,15 +18,15 @@ import javax.validation.constraints.Size;
 public class AgreementAssignmentHeadds extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Size(max = 11)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
 
-    @Column(nullable = false, length = 250)
+    @Size(max = 250)
+    @Column(name = "name")
     private String name;
 
-    @Column(nullable = false, columnDefinition = "text")
+    @Column(name = "description")
     private String description;
 
     @Enumerated(EnumType.STRING)
@@ -33,19 +34,19 @@ public class AgreementAssignmentHeadds extends BaseModel {
     private EAgreementType agreementType;
 
     @Size(max = 11)
-    @Column(name = "assignment_id",nullable = false)
-    private int assignmentId;
+    @Column(name = "assignment_id")
+    private Integer assignmentId;
 
     @Size(max = 11)
-    @Column(name = "client_id",nullable = false)
-    private int clientId;
+    @Column(name = "client_id")
+    private Integer clientId;
 
     @Size(max = 11)
-    @Column(name = "domain_id",nullable = false)
-    private int domainId;
+    @Column(name = "domain_id")
+    private Integer domainId;
 
     @Size(max = 11)
-    @Column(name = "borrow_from", nullable = false)
-    private int borrowFrom;
+    @Column(name = "borrow_from")
+    private Integer borrowFrom;
 
 }

@@ -4,13 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name = "agreement_subject_answers_values")
+@Table(name = "agreement_subject_answers_values",indexes = {
+        @Index(name = "execution_id_index", columnList = "execution_id,approver_user,doer_user")
+})
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -18,51 +22,57 @@ import java.util.Date;
 public class AgreementSubjectAnswersValues extends BaseModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Size(max = 11)
-    @Column(name = "value_id" ,nullable = false)
-    private int valueId;
+    @Column(name = "value_id")
+    private Long valueId;
 
     @Size(max = 11)
-    @Column(name = "agreement_subject_id" ,nullable = false)
-    private int agreementSubjectId;
+    @Column(name = "agreement_subject_id")
+    private Integer agreementSubjectId;
 
-    @Column(name = "answer", nullable = false)
+    @Column(name = "answer")
     private String answer;
 
     @Size(max = 11)
-    @Column(name = "agreement_node_id" ,nullable = false)
-    private int agreementNodeId;
+    @Column(name = "agreement_node_id" )
+    private Integer agreementNodeId;
 
     @Size(max = 11)
-    @Column(name = "given_by" ,nullable = false)
-    private int givenBy;
+    @Column(name = "given_by")
+    private Integer givenBy;
 
     @Size(max = 11)
-    @Column(name = "execution_id" ,nullable = false)
-    private int executionId;
+    @Column(name = "execution_id")
+    private Integer executionId;
 
     @Size(max = 11)
-    @Column(name = "approver_user" ,nullable = false)
-    private int approverUser;
+    @Column(name = "approver_user")
+    private Integer approverUser;
 
     @Size(max = 11)
-    @Column(name = "doer_user" ,nullable = false)
-    private int doerUser;
+    @Column(name = "doer_user")
+    private Integer doerUser;
 
-    @Column(name = "given_dt", nullable = false)
+    @Column(name = "status")
+    @ColumnDefault("1")
+    @Comment("1=not initiated,2-submitted,3-rejected,4-approved")
+    private Integer status;
+
+    @Column(name = "given_dt")
     private Date givenDt;
 
     @Size(max = 11)
-    @Column(name = "approved_by" ,nullable = false)
-    private int approvedBy;
+    @Column(name = "approved_by" )
+    private Integer approvedBy;
 
-    @Column(name = "approved_dt", nullable = false)
+    @Column(name = "approved_dt")
     private Date approvedDt;
 
-    @Column(name = "yes_no", nullable = false)
-    private int yesNo;
+    @ColumnDefault("2")
+    @Column(name = "yes_no")
+    private Integer yesNo;
 
-    @Column(name = "ans", nullable = false)
-    private int ans;
+    @Size(max = 1)
+    @Column(name = "ans")
+    private Integer ans;
 
 }
