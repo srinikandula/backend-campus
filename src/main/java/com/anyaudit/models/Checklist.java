@@ -17,7 +17,6 @@ public class Checklist extends BaseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "checklist_id")
     private Long id;
 
