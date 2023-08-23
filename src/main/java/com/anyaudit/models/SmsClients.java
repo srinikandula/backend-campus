@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Columns;
+import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -19,10 +22,10 @@ public class SmsClients extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "client_id")
-    private Integer clientId;
+    private Long clientId;
 
     @Size(max = 255)
-    @Column(name = "client_name", nullable = false)
+    @Column(name = "client_name")
     private String clientName;
 
     @Size(max = 30)
@@ -30,7 +33,7 @@ public class SmsClients extends BaseModel {
     private String fileNo;
 
     @Size(max = 100)
-    @Column(name = "client_email", nullable = false)
+    @Column(name = "client_email")
     private String clientEmail;
 
     @Size(max = 20)
@@ -42,122 +45,123 @@ public class SmsClients extends BaseModel {
     private String phone;
 
     @Size(max = 100)
-    @Column(name = "owner_name", nullable = false)
+    @Column(name = "owner_name")
     private String ownerName;
 
-
-    @Column(name = "owner_num", nullable = false, length = 20)
-    private Long ownerNum;
+    @Size(max = 100)
+    @Column(name = "owner_num")
+    private String ownerNum;
 
     @Size(max = 100)
-    @Column(name = "accountant_name", nullable = false)
+    @Column(name = "accountant_name")
     private String accountantName;
 
-    @NotNull
+
     @Digits(integer = 20, fraction = 0)
-    @Column(name = "accountant_num", nullable = false)
+    @Column(name = "accountant_num")
     private Long accountantNum;
 
     @Size(max = 250)
-    @Column(name = "address", nullable = false)
+    @Column(name = "address")
     private String address;
 
-    @Column(name = "asgclient_id", nullable = false,length = 11)
-    private int asgClientId;
+    @Size(max = 11)
+    @Column(name = "asgclient_id")
+    private Integer asgClientId;
 
 
     @Size(max = 10)
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private String status;
 
 
-    @Column(name = "client_creationdt", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "client_creationdt")
     private Date clientCreationDt;
 
-
-    @Column(name = "domain_id", nullable = false,length = 11)
+    @Size(max = 11)
+    @Column(name = "domain_id")
     private int domainId;
 
-
-    @Column(name = "coa_head_id", nullable = false,length = 11)
+    @Size(max = 11)
+    @Column(name = "coa_head_id")
     private int coaHeadId;
 
-
-    @Column(name = "cos_head_id", nullable = false,length = 11)
+    @Size(max = 11)
+    @Column(name = "cos_head_id")
     private int cosHeadId;
 
-    @Column(name = "fss_head_id", nullable = false,length = 11)
+    @Size(max = 11)
+    @Column(name = "fss_head_id")
     private int fssHeadId;
 
-
-    @Column(name = "branch_id", nullable = false,length = 11)
+    @Size(max = 11)
+    @Column(name = "branch_id")
     private int branchId;
 
-    @Column(name = "main_or_sub",length = 4, columnDefinition = "tinyint")
+    @Column(name = "main_or_sub",columnDefinition = "TINYINT(4)")
     private Byte mainOrSub;
 
-
-    @Column(name = "assignment_id",length = 11 ,columnDefinition = "int default null")
+    @Comment("its a dummy used for excel upload")
+    @Column(name = "assignment_id")
     private Integer assignmentId;
 
-    @Column(name = "company_id",length = 11,columnDefinition = "int default null")
+    @Comment("its a dummy used for excel upload")
+    @Column(name = "company_id")
     private Integer companyId;
 
     @Size(max = 30)
-    @Column(name = "nationality", nullable = false)
+    @Column(name = "nationality")
     private String nationality;
 
     @Size(max = 100)
     @Column(name = "website", nullable = false)
     private String website;
 
-    @Size(max = 50  )
-    @Column(name = "contact_person", nullable = false)
+    @Size(max = 50)
+    @Column(name = "contact_person")
     private String contactPerson;
 
 
-    @Column(name = "accounting_package", nullable = false)
+    @Column(name = "accounting_package")
     private String accountingPackage;
 
 
-    @Column(name = "registered_address", nullable = false)
+    @Column(name = "registered_address")
     private String registeredAddress;
 
     @Size(max = 80)
-    @Column(name = "cin", nullable = false)
+    @Column(name = "cin")
     private String cin;
 
     @Size(max = 30)
-    @Column(name = "registration_no", nullable = false)
+    @Column(name = "registration_no")
     private String registrationNo;
 
     @Size(max = 50)
-    @Column(name = "iec", nullable = false)
+    @Column(name = "iec")
     private String iec;
 
     @Size(max = 30)
-    @Column(name = "pf_reg_no", nullable = false)
+    @Column(name = "pf_reg_no")
     private String pfRegNo;
 
     @Size(max = 30)
-    @Column(name = "esi_reg_no", nullable = false)
+    @Column(name = "esi_reg_no")
     private String esiRegNo;
 
     @Size(max = 30)
-    @Column(name = "pt_reg_no", nullable = false)
+    @Column(name = "pt_reg_no")
     private String ptRegNo;
 
+    @Column(name = "is_fss_updated", columnDefinition = "TINYINT(4) default '0'")
+    private Integer isFssUpdated;
 
-    @Column(name = "is_fss_updated", nullable = false)
-    private Boolean isFssUpdated;
-
-    @Column(name = "is_repeated",length = 10,nullable = false)
+    @Size(max = 10)
+    @Column(name = "is_repeated")
     private Integer isRepeated;
 
-
-    @Column(name = "is_cloned", columnDefinition = "tinyint default 0")
-    private Boolean isCloned;
+    @Column(name = "is_cloned", columnDefinition = "TINYINT(1) default '0'")
+    private Integer isCloned;
 
 
 }

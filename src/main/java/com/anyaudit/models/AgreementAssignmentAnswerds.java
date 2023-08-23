@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
+
 @Entity
 @Table(name = "agreement_assignment_answerds")
 @AllArgsConstructor
@@ -23,7 +24,7 @@ public class AgreementAssignmentAnswerds extends BaseModel {
 
     @Size(max = 11)
     @Column(name = "node_id",nullable = false)
-    private int nodeId;
+    private Integer nodeId;
 
     @Column(name = "short_answer", nullable = false)
     private String shortAnswer;

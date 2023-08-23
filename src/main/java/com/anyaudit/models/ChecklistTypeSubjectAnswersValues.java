@@ -12,37 +12,35 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name = "agreement_subject_answers_values",indexes = {
-        @Index(name = "execution_id_index", columnList = "execution_id,approver_user,doer_user")
-})
+@Table(name = "checklist_type_subject_answers_values")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class AgreementSubjectAnswersValues extends BaseModel{
+public class ChecklistTypeSubjectAnswersValues extends BaseModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "value_id")
     private Long valueId;
 
     @Size(max = 11)
-    @Column(name = "agreement_subject_id")
-    private Integer agreementSubjectId;
+    @Column(name = "execution_id")
+    private Integer executionId;
 
     @Column(name = "answer")
     private String answer;
 
     @Size(max = 11)
-    @Column(name = "agreement_node_id" )
-    private Integer agreementNodeId;
+    @Column(name = "checklist_node_id")
+    private Integer checklistNodeId;
+
+    @Size(max = 11)
+    @Column(name = "checklist_id")
+    private Integer checklistId;
 
     @Size(max = 11)
     @Column(name = "given_by")
     private Integer givenBy;
-
-    @Size(max = 11)
-    @Column(name = "execution_id")
-    private Integer executionId;
 
     @Size(max = 11)
     @Column(name = "approver_user")
@@ -53,7 +51,6 @@ public class AgreementSubjectAnswersValues extends BaseModel{
     private Integer doerUser;
 
     @Column(name = "status")
-    @ColumnDefault("1")
     @Comment("1=not initiated,2-submitted,3-rejected,4-approved")
     private Integer status;
 
@@ -61,13 +58,17 @@ public class AgreementSubjectAnswersValues extends BaseModel{
     private Date givenDt;
 
     @Size(max = 11)
-    @Column(name = "approved_by" )
+    @Column(name = "approved_by")
     private Integer approvedBy;
 
     @Column(name = "approved_dt")
     private Date approvedDt;
 
-    @ColumnDefault("2")
+    @Size(max = 11)
+    @Column(name = "assignment_id")
+    private Integer assignmentId;
+
+    @ColumnDefault("4")
     @Column(name = "yes_no")
     private Integer yesNo;
 
@@ -75,4 +76,11 @@ public class AgreementSubjectAnswersValues extends BaseModel{
     @Column(name = "ans")
     private Integer ans;
 
+    @Size(max = 50)
+    @Column(name = "fav_adv")
+    private String favAdv;
+
+    @Size(max = 1)
+    @Column(name = "rule_status")
+    private Integer ruleStatus;
 }

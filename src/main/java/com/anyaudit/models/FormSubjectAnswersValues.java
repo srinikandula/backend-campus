@@ -1,9 +1,6 @@
 package com.anyaudit.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
 
@@ -12,29 +9,31 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name = "agreement_subject_answers_values",indexes = {
-        @Index(name = "execution_id_index", columnList = "execution_id,approver_user,doer_user")
-})
+@Table(name = "form_subject_answers_values",
+        indexes = {
+                @Index(name = "execution_id_index", columnList = "execution_id,approver_user,doer_user")
+
+        })
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class AgreementSubjectAnswersValues extends BaseModel{
+public class FormSubjectAnswersValues {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "value_id")
     private Long valueId;
 
     @Size(max = 11)
-    @Column(name = "agreement_subject_id")
-    private Integer agreementSubjectId;
+    @Column(name = "form_subject_id")
+    private Integer form_subjectId;
 
     @Column(name = "answer")
     private String answer;
 
     @Size(max = 11)
-    @Column(name = "agreement_node_id" )
-    private Integer agreementNodeId;
+    @Column(name = "checklist_node_id")
+    private Integer checklistNodeId;
 
     @Size(max = 11)
     @Column(name = "given_by")
@@ -53,7 +52,6 @@ public class AgreementSubjectAnswersValues extends BaseModel{
     private Integer doerUser;
 
     @Column(name = "status")
-    @ColumnDefault("1")
     @Comment("1=not initiated,2-submitted,3-rejected,4-approved")
     private Integer status;
 
@@ -61,7 +59,7 @@ public class AgreementSubjectAnswersValues extends BaseModel{
     private Date givenDt;
 
     @Size(max = 11)
-    @Column(name = "approved_by" )
+    @Column(name = "approved_by")
     private Integer approvedBy;
 
     @Column(name = "approved_dt")
@@ -75,4 +73,17 @@ public class AgreementSubjectAnswersValues extends BaseModel{
     @Column(name = "ans")
     private Integer ans;
 
+    @Size(max = 50)
+    @Column(name = "fav_adv")
+    private String favAdv;
+
+    @ColumnDefault("1")
+    @Column(name = "rule_status")
+    private Integer ruleStatus;
+
+    @Column(name = "short_form")
+    private String shortForm;
+
+    @Column(name = "full_form")
+    private String fullForm;
 }
