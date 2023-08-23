@@ -6,20 +6,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "checklists")
+@Table(name = "risk_rcm")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Checklist extends BaseModel {
-
+public class RiskRcm extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "checklist_id")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "checklist_name")
-    private String checklistName;
+    @Size(max = 11)
+    @Column(name = "activity_risk_id")
+    private Integer activityRiskId;
+
+    @Size(max = 11)
+    @Column(name = "risk_master_id")
+    private Integer riskMasterId;
 }

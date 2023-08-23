@@ -8,18 +8,18 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "checklists")
+@Table(name = "sms_work_status")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Checklist extends BaseModel {
-
+public class SmsWorkStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "checklist_id")
-    private Long id;
+    @Column(name = "status_id")
+    private Integer statusId;
 
-    @Column(name = "checklist_name")
-    private String checklistName;
+    @Column(name = "status_name", nullable = false, length = 50)
+    private String statusName;
+
 }
