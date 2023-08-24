@@ -1,6 +1,6 @@
 package com.anyaudit.service;
 
-import com.anyaudit.BaseTest;
+import com.anyaudit.base.BaseTest;
 import com.anyaudit.models.Milestone;
 import com.anyaudit.repository.MileStoneRepository;
 import org.junit.After;

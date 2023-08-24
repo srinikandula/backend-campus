@@ -1,7 +1,9 @@
 package com.anyaudit.service;
 
+import com.anyaudit.base.BaseManagerTest;
 import com.anyaudit.base.BaseTest;
 import com.anyaudit.models.Client;
+import com.anyaudit.models.ERole;
 import com.anyaudit.repository.ClientRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.validation.ConstraintViolationException;
 
 
-public class ClientManagerTest extends BaseTest {
+public class ClientManagerTest extends BaseManagerTest {
 
     @Autowired
     private ClientRepository clientRepository;
@@ -19,6 +21,7 @@ public class ClientManagerTest extends BaseTest {
 
     @Test
     public void shouldSaveClient() {
+
         // given
         Client client = new Client();
         client.setName("Test Client");

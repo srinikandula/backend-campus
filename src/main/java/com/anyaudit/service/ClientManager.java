@@ -1,10 +1,13 @@
 package com.anyaudit.service;
 
 import com.anyaudit.models.Client;
+import com.anyaudit.models.ERole;
 import com.anyaudit.repository.ClientRepository;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +15,6 @@ import java.util.List;
 public class ClientManager {
     @Autowired
     private ClientRepository clientRepository;
-
 
     public Client addClient(Client client) {
         if(client.getName().length() < 6) {
