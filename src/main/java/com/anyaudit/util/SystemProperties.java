@@ -99,7 +99,9 @@ public class SystemProperties {
         AWS_S3_OFFICEEXPENSESBUCKET("aws.s3.officeExpensesBucket"),
         AMZ_CLIENTIDS("amazon.clientIds"),
         EXPIRATION_BUFFER("expiry.buffer"),
-        MAX_UPLOAD_SIZE_BYTES("max.upload.size");
+        MAX_UPLOAD_SIZE_BYTES("max.upload.size"),
+
+        AZURE_STORAGE_ACCOUNT_KEY("azure.storage.account.key");
         private final String propertyName;
         SysProps(final String propertyName) {
             this.propertyName = propertyName;
