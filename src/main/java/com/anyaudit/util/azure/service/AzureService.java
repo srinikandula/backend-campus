@@ -1,4 +1,4 @@
-package com.anyaudit.azure.service;
+package com.anyaudit.util.azure.service;
 
 import com.azure.storage.blob.BlobServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
