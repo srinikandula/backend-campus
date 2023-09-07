@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.anyaudit.models.Role;
 import com.anyaudit.payload.request.LoginRequest;
 import com.anyaudit.payload.request.SignupRequest;
 import com.anyaudit.payload.response.JwtResponse;
@@ -107,10 +108,10 @@ public class AuthController {
             encoder.encode(signUpRequest.getPassword()),
             signUpRequest.getPhoneNo(),
             signUpRequest.getRole().stream().map(role -> {
+              System.out.println("============="+role);
               switch (role) {
                 case "Admin":
-                  return roleRepository.findByName(ERole.ROLE_ADMIN)
-                          .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                  return new Role(ERole.ROLE_ADMIN);
                 case "Audit Manager":
                   return roleRepository.findByName(ERole.ROLE_MANAGER)
                           .orElseThrow(() -> new RuntimeException("Error: Role is not found."));

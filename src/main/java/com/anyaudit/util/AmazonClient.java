@@ -38,7 +38,7 @@ public class AmazonClient {
 
     @PostConstruct
     private void initializeAmazon() {
-        String awsAccessKey = systemProperties.getProperty("aws.accesskey");
+        /*String awsAccessKey = systemProperties.getProperty("aws.accesskey");
         String awsSecretKey = systemProperties.getProperty("aws.secretkey");
         if(StringUtils.isEmpty(awsAccessKey)|| StringUtils.isEmpty(awsSecretKey)){
             throw new IllegalStateException("Please check config for aws crendentials");
@@ -46,7 +46,7 @@ public class AmazonClient {
         AWSCredentials credentials = new BasicAWSCredentials(awsAccessKey, awsSecretKey);
         s3Client = AmazonS3ClientBuilder.standard()
                 .withRegion("us-east-1")
-                .withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
+                .withCredentials(new AWSStaticCredentialsProvider(credentials)).build();*/
     }
     public JSONObject uploadFile(String fileName, MultipartFile mFile) throws IOException {
         InputStream stream = null;

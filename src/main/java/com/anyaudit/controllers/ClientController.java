@@ -9,8 +9,12 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 
@@ -31,7 +35,6 @@ public class ClientController {
     public List<Client> getAllClients() {
         return clientService.getAllClients();
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<Client> getClientById(@PathVariable("id") long clientId) {
         Client client = clientService.getClientById(clientId);
@@ -41,6 +44,7 @@ public class ClientController {
         return ResponseEntity.ok(client);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')")
     @PostMapping("/save")
     public ResponseEntity<?> addClient(@RequestBody Client client) {
         Map<String, String> errors = validateClient(client);
